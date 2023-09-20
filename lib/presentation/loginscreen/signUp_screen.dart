@@ -3,8 +3,8 @@ import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
   ValueNotifier<bool> _showPassword = ValueNotifier(true);
 
@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                       FocusScope.of(context).unfocus();
                     },
                     child: Text(
-                      "Login",
+                      "Sign Up",
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                     style: ButtonStyle(
@@ -119,29 +119,14 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // ListTile(
-            //   titleAlignment: ListTileTitleAlignment.center,
-            //   shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(20)),
-            //   tileColor: Theme.of(context).colorScheme.primaryContainer,
-            //   leading: Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: Image.asset("assets/auth/google-logo-9808.png"),
-            //   ),
-            //   title: Text(
-            //     "Sign in with Google",
-            //     style: TextStyle(fontSize: 18),
-            //     textAlign: TextAlign.center,
-            //   ),
-            // ),
             height,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
+                Text("Already have an account?"),
                 TextButton(
                   onPressed: () {},
-                  child: Text('Sign Up'),
+                  child: Text('Login'),
                 )
               ],
             ),

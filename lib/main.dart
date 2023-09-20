@@ -1,5 +1,6 @@
 import 'package:elevate/presentation/homescreen/homescreen.dart';
 import 'package:elevate/presentation/loginscreen/login_screen.dart';
+import 'package:elevate/presentation/loginscreen/signUp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-        home: LoginScreen(),
+        home: SignUpScreen(),
       ),
     );
   }
