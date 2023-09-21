@@ -6,6 +6,7 @@ import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -15,6 +16,7 @@ class SignUpScreen extends StatelessWidget {
   TextEditingController _otpController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey();
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,24 @@ class SignUpScreen extends StatelessWidget {
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.person),
                     suffixIcon: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
+                            _loading = false;
                             print('ok');
                           }
                         },
-                        child: Text(
-                          'Send OTP',
-                          style: TextStyle(color: Colors.black),
-                        )),
+                        child: _loading
+                            ? Text(
+                                'Send OTP',
+                                style: TextStyle(color: Colors.black),
+                              )
+                            : Container(
+                                height: 80.h,
+                                width: 80.w,
+                                child: SpinKitRing(
+                                  color: Colors.lightBlue,
+                                ),
+                              )),
                     hintText: 'Email',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
