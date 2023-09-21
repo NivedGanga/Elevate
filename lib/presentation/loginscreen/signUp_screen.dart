@@ -2,6 +2,7 @@ import 'package:elevate/presentation/shared/constants.dart';
 import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -58,7 +59,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     style: ButtonStyle(
                         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
+                            borderRadius: BorderRadius.circular(50.r))),
                         backgroundColor: MaterialStatePropertyAll(
                           Theme.of(context).colorScheme.tertiaryContainer,
                         )))),
@@ -79,41 +80,40 @@ class SignUpScreen extends StatelessWidget {
               height: 15,
             ),
             Container(
-              height: 53,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(20)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 22, vertical: 8),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Image(
-                                image: AssetImage(
-                                    'assets/auth/google-logo-9808.png'),
-                              ),
+              height: 150.h,
+              child: Material(
+                color: Theme.of(context).colorScheme.tertiaryContainer,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.r)),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(50.r),
+                  splashFactory: InkSparkle.splashFactory,
+                  splashColor: Color.fromARGB(255, 255, 193, 212),
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/auth/google-logo-9808.png'),
                             ),
                           ),
-                          Text(
-                            "Sign in with Google",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Expanded(
-                            child: SizedBox(),
-                          )
-                        ],
-                      ),
+                        ),
+                        Text(
+                          "Sign in with Google",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Expanded(
+                          child: SizedBox(),
+                        )
+                      ],
                     ),
                   ),
                 ),
