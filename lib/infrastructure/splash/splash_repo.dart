@@ -7,7 +7,7 @@ class SplashRepo extends ISplashRepo {
   @override
   Future<bool> isUserLoggedIn() async {
     final sharedPref = await SharedPreferences.getInstance();
-    final isUserLoggedIn = sharedPref.getString('UserToken');
+    final isUserLoggedIn = sharedPref.getString('uid');
     if (isUserLoggedIn != null) {
       return true;
     } else {
