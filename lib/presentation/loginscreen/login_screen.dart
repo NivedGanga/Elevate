@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:elevate/infrastructure/auth/auth_repo.dart';
 import 'package:elevate/presentation/shared/constants.dart';
 import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter/foundation.dart';
@@ -81,15 +84,16 @@ class LoginScreen extends StatelessWidget {
             Container(
               height: 53,
               decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,  
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       FocusScope.of(context).unfocus();
+                      await AuthRepo().sendOtp("nivedlss4242@gmail.com");
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
