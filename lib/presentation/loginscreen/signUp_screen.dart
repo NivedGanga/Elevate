@@ -3,8 +3,8 @@ import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
   ValueNotifier<bool> _showPassword = ValueNotifier(true);
 
@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                       FocusScope.of(context).unfocus();
                     },
                     child: Text(
-                      "Login",
+                      "Sign Up",
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                     style: ButtonStyle(
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               height: 53,
               decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,  
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -123,10 +123,10 @@ class LoginScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
+                Text("Already have an account?"),
                 TextButton(
                   onPressed: () {},
-                  child: Text('Sign Up'),
+                  child: Text('Login'),
                 )
               ],
             ),

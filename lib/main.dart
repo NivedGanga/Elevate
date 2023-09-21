@@ -3,9 +3,9 @@ import 'package:elevate/domain/di/injectable.dart';
 import 'package:elevate/firebase_options.dart';
 import 'package:elevate/presentation/homescreen/homescreen.dart';
 import 'package:elevate/presentation/loginscreen/login_screen.dart';
-
 import 'package:elevate/presentation/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:elevate/presentation/loginscreen/signUp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:elevate/theme/material-theme/color_schemes.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => SplashScreen(),
           '/login': (context) => LoginScreen(),
+          '/signUp': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
         },
       ),
