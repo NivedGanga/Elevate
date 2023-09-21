@@ -80,6 +80,7 @@ class LoginScreen extends StatelessWidget {
               height: 15.h,
             ),
             Container(
+
               height: 150.h,
               child: Material(
                 color: Theme.of(context).colorScheme.tertiaryContainer,
@@ -119,21 +120,6 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // ListTile(
-            //   titleAlignment: ListTileTitleAlignment.center,
-            //   shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(20)),
-            //   tileColor: Theme.of(context).colorScheme.primaryContainer,
-            //   leading: Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: Image.asset("assets/auth/google-logo-9808.png"),
-            //   ),
-            //   title: Text(
-            //     "Sign in with Google",
-            //     style: TextStyle(fontSize: 18),
-            //     textAlign: TextAlign.center,
-            //   ),
-            // ),
             height,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
