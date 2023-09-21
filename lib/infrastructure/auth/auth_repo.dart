@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:elevate/domain/auth/i_auth_repo.dart';
 import 'package:elevate/domain/failure/main_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepo implements IAuthRepo {
   @override
@@ -43,8 +44,12 @@ class AuthRepo implements IAuthRepo {
   Future<void> registerSharedPref(String uid) async {}
 
   @override
-  Future<Either<MainFailure, String>> googleSignIn() {
-    // TODO: implement googleSignIn
-    throw UnimplementedError();
+  Future<Either<MainFailure, String>> googleSignIn() async {
+    //   try{
+    //     Googl
+    //   }catch(e){
+
+    //   }
+    return right('');
   }
 }
