@@ -20,18 +20,21 @@ mixin _$MainFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
+    required TResult Function(String message) firebaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
+    TResult? Function(String message)? firebaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
+    TResult Function(String message)? firebaseFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$MainFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_FirebaseFailure value) firebaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_FirebaseFailure value)? firebaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_FirebaseFailure value)? firebaseFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
+    required TResult Function(String message) firebaseFailure,
   }) {
     return clientFailure();
   }
@@ -123,6 +130,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
+    TResult? Function(String message)? firebaseFailure,
   }) {
     return clientFailure?.call();
   }
@@ -132,6 +140,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
+    TResult Function(String message)? firebaseFailure,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
@@ -145,6 +154,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_FirebaseFailure value) firebaseFailure,
   }) {
     return clientFailure(this);
   }
@@ -154,6 +164,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_FirebaseFailure value)? firebaseFailure,
   }) {
     return clientFailure?.call(this);
   }
@@ -163,6 +174,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_FirebaseFailure value)? firebaseFailure,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
@@ -216,6 +228,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
+    required TResult Function(String message) firebaseFailure,
   }) {
     return serverFailure();
   }
@@ -225,6 +238,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
+    TResult? Function(String message)? firebaseFailure,
   }) {
     return serverFailure?.call();
   }
@@ -234,6 +248,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
+    TResult Function(String message)? firebaseFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -247,6 +262,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_FirebaseFailure value) firebaseFailure,
   }) {
     return serverFailure(this);
   }
@@ -256,6 +272,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_FirebaseFailure value)? firebaseFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -265,6 +282,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_FirebaseFailure value)? firebaseFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -276,4 +294,143 @@ class _$_ServerFailure implements _ServerFailure {
 
 abstract class _ServerFailure implements MainFailure {
   const factory _ServerFailure() = _$_ServerFailure;
+}
+
+/// @nodoc
+abstract class _$$_FirebaseFailureCopyWith<$Res> {
+  factory _$$_FirebaseFailureCopyWith(
+          _$_FirebaseFailure value, $Res Function(_$_FirebaseFailure) then) =
+      __$$_FirebaseFailureCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_FirebaseFailureCopyWithImpl<$Res>
+    extends _$MainFailureCopyWithImpl<$Res, _$_FirebaseFailure>
+    implements _$$_FirebaseFailureCopyWith<$Res> {
+  __$$_FirebaseFailureCopyWithImpl(
+      _$_FirebaseFailure _value, $Res Function(_$_FirebaseFailure) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_FirebaseFailure(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FirebaseFailure implements _FirebaseFailure {
+  const _$_FirebaseFailure(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MainFailure.firebaseFailure(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FirebaseFailure &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FirebaseFailureCopyWith<_$_FirebaseFailure> get copyWith =>
+      __$$_FirebaseFailureCopyWithImpl<_$_FirebaseFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clientFailure,
+    required TResult Function() serverFailure,
+    required TResult Function(String message) firebaseFailure,
+  }) {
+    return firebaseFailure(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clientFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function(String message)? firebaseFailure,
+  }) {
+    return firebaseFailure?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clientFailure,
+    TResult Function()? serverFailure,
+    TResult Function(String message)? firebaseFailure,
+    required TResult orElse(),
+  }) {
+    if (firebaseFailure != null) {
+      return firebaseFailure(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_FirebaseFailure value) firebaseFailure,
+  }) {
+    return firebaseFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_FirebaseFailure value)? firebaseFailure,
+  }) {
+    return firebaseFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_FirebaseFailure value)? firebaseFailure,
+    required TResult orElse(),
+  }) {
+    if (firebaseFailure != null) {
+      return firebaseFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FirebaseFailure implements MainFailure {
+  const factory _FirebaseFailure(final String message) = _$_FirebaseFailure;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_FirebaseFailureCopyWith<_$_FirebaseFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
