@@ -15,8 +15,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._authRepo) : super(AuthState.initial()) {
     on<_SignIn>((event, emit) async {
       final responce =
-          await _authRepo.signin(email: event.email, password: event.passowrd);
-      responce.fold((failure) {
+          await _authRepo.signin(email: event.email, password: event.password);
+      await responce.fold((failure) {
         emit(state.copyWith(
           authFailureOrSuccess: some(left(failure)),
         ));
@@ -27,8 +27,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
-    on<_SignUp>((event, emit) {
-      
+    on<_SignUp>((event, emit) async {
+      final responce = await _authRepo.signup(
+        email: event.email,
+        password: event.password,
+      );
+      await responce.fold((failure) {
+        emit(state.copyWith(
+          authFailureOrSuccess: some(left(failure)),
+        ));
+      }, (sucess) async {
+        await _authRepo.registerSharedPref(sucess);
+        emit(state.copyWith(
+          authFailureOrSuccess: some(right(sucess)),
+        ));
+      });
     });
   }
 }

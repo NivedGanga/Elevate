@@ -17,23 +17,23 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthEvent {
   String get email => throw _privateConstructorUsedError;
-  String get passowrd => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String passowrd) signIn,
-    required TResult Function(String email, String passowrd) signUp,
+    required TResult Function(String email, String password) signIn,
+    required TResult Function(String email, String password) signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String passowrd)? signIn,
-    TResult? Function(String email, String passowrd)? signUp,
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function(String email, String password)? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String passowrd)? signIn,
-    TResult Function(String email, String passowrd)? signUp,
+    TResult Function(String email, String password)? signIn,
+    TResult Function(String email, String password)? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res, AuthEvent>;
   @useResult
-  $Res call({String email, String passowrd});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -84,16 +84,16 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   @override
   $Res call({
     Object? email = null,
-    Object? passowrd = null,
+    Object? password = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      passowrd: null == passowrd
-          ? _value.passowrd
-          : passowrd // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -105,7 +105,7 @@ abstract class _$$_SignInCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
       __$$_SignInCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String passowrd});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -119,16 +119,16 @@ class __$$_SignInCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? passowrd = null,
+    Object? password = null,
   }) {
     return _then(_$_SignIn(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      passowrd: null == passowrd
-          ? _value.passowrd
-          : passowrd // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -137,16 +137,16 @@ class __$$_SignInCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignIn implements _SignIn {
-  const _$_SignIn({required this.email, required this.passowrd});
+  const _$_SignIn({required this.email, required this.password});
 
   @override
   final String email;
   @override
-  final String passowrd;
+  final String password;
 
   @override
   String toString() {
-    return 'AuthEvent.signIn(email: $email, passowrd: $passowrd)';
+    return 'AuthEvent.signIn(email: $email, password: $password)';
   }
 
   @override
@@ -155,12 +155,12 @@ class _$_SignIn implements _SignIn {
         (other.runtimeType == runtimeType &&
             other is _$_SignIn &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.passowrd, passowrd) ||
-                other.passowrd == passowrd));
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, passowrd);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -171,30 +171,30 @@ class _$_SignIn implements _SignIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String passowrd) signIn,
-    required TResult Function(String email, String passowrd) signUp,
+    required TResult Function(String email, String password) signIn,
+    required TResult Function(String email, String password) signUp,
   }) {
-    return signIn(email, passowrd);
+    return signIn(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String passowrd)? signIn,
-    TResult? Function(String email, String passowrd)? signUp,
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function(String email, String password)? signUp,
   }) {
-    return signIn?.call(email, passowrd);
+    return signIn?.call(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String passowrd)? signIn,
-    TResult Function(String email, String passowrd)? signUp,
+    TResult Function(String email, String password)? signIn,
+    TResult Function(String email, String password)? signUp,
     required TResult orElse(),
   }) {
     if (signIn != null) {
-      return signIn(email, passowrd);
+      return signIn(email, password);
     }
     return orElse();
   }
@@ -234,12 +234,12 @@ class _$_SignIn implements _SignIn {
 abstract class _SignIn implements AuthEvent {
   const factory _SignIn(
       {required final String email,
-      required final String passowrd}) = _$_SignIn;
+      required final String password}) = _$_SignIn;
 
   @override
   String get email;
   @override
-  String get passowrd;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$_SignInCopyWith<_$_SignIn> get copyWith =>
@@ -252,7 +252,7 @@ abstract class _$$_SignUpCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
       __$$_SignUpCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String passowrd});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -266,16 +266,16 @@ class __$$_SignUpCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? passowrd = null,
+    Object? password = null,
   }) {
     return _then(_$_SignUp(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      passowrd: null == passowrd
-          ? _value.passowrd
-          : passowrd // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -284,16 +284,16 @@ class __$$_SignUpCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignUp implements _SignUp {
-  const _$_SignUp({required this.email, required this.passowrd});
+  const _$_SignUp({required this.email, required this.password});
 
   @override
   final String email;
   @override
-  final String passowrd;
+  final String password;
 
   @override
   String toString() {
-    return 'AuthEvent.signUp(email: $email, passowrd: $passowrd)';
+    return 'AuthEvent.signUp(email: $email, password: $password)';
   }
 
   @override
@@ -302,12 +302,12 @@ class _$_SignUp implements _SignUp {
         (other.runtimeType == runtimeType &&
             other is _$_SignUp &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.passowrd, passowrd) ||
-                other.passowrd == passowrd));
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, passowrd);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -318,30 +318,30 @@ class _$_SignUp implements _SignUp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String passowrd) signIn,
-    required TResult Function(String email, String passowrd) signUp,
+    required TResult Function(String email, String password) signIn,
+    required TResult Function(String email, String password) signUp,
   }) {
-    return signUp(email, passowrd);
+    return signUp(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String passowrd)? signIn,
-    TResult? Function(String email, String passowrd)? signUp,
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function(String email, String password)? signUp,
   }) {
-    return signUp?.call(email, passowrd);
+    return signUp?.call(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String passowrd)? signIn,
-    TResult Function(String email, String passowrd)? signUp,
+    TResult Function(String email, String password)? signIn,
+    TResult Function(String email, String password)? signUp,
     required TResult orElse(),
   }) {
     if (signUp != null) {
-      return signUp(email, passowrd);
+      return signUp(email, password);
     }
     return orElse();
   }
@@ -381,12 +381,12 @@ class _$_SignUp implements _SignUp {
 abstract class _SignUp implements AuthEvent {
   const factory _SignUp(
       {required final String email,
-      required final String passowrd}) = _$_SignUp;
+      required final String password}) = _$_SignUp;
 
   @override
   String get email;
   @override
-  String get passowrd;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpCopyWith<_$_SignUp> get copyWith =>
