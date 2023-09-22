@@ -52,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (sucess) async {
         await _authRepo.removeSharedpref();
         emit(state.copyWith(
-          authFailureOrSuccess: Some(right('')),
+          authFailureOrSuccess: Some(right('logout')),
         ));
       });
     });
