@@ -23,6 +23,8 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset("assets/login_vector-.png"),
+              height,
               TextFormField(
                 validator: (value) =>
                     (value == null || value.isEmpty) ? 'Enter Email' : null,
