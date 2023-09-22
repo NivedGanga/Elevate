@@ -22,7 +22,7 @@ class FloatingActionButtonWidget extends StatelessWidget {
         FloatingActionButton(
           onPressed: () {},
           child: Icon(Icons.restart_alt),
-          heroTag: 'mic',
+          heroTag: 'restart',
         ),
       ],
     );

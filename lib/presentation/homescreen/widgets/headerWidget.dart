@@ -1,4 +1,6 @@
+import 'package:elevate/presentation/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
@@ -11,13 +13,15 @@ class HeaderWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 70,
-            backgroundImage: AssetImage(
-              'assets/homePage_image.webp',
+          Container(
+            height: 600.h,
+            width: 300.w,
+            child: Image(
+              image: AssetImage('assets/homePage_image.webp'),
+              fit: BoxFit.cover,
             ),
           ),
+          width,
           Text(
             'Hi Amigo!',
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
