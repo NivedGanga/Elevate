@@ -68,11 +68,8 @@ flutter:
   assets:
     - assets/auth/google-logo-9808.png
     - assets/login_vector-.png
-<<<<<<< HEAD
     - assets/signup-vector.png
-=======
     - assets/homePage_image.webp
->>>>>>> 11236957c40e7ecdebc140535070a16b0c481aa0
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
