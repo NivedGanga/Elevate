@@ -1,6 +1,10 @@
+import 'package:elevate/presentation/homescreen/widgets/headerWidget.dart';
+import 'package:elevate/presentation/homescreen/widgets/quoteWidget.dart';
+import 'package:elevate/presentation/homescreen/widgets/restartButton_widet.dart';
+import 'package:elevate/presentation/homescreen/widgets/story_widget.dart';
 import 'package:elevate/presentation/shared/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -19,48 +23,12 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 70,
-                        backgroundImage: AssetImage(
-                          'assets/homePage_image.webp',
-                        ),
-                      ),
-                      Text(
-                        'Hi Amigo!',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
+                HeaderWidget(),
                 height,
-                Container(
-                  height: 250.h,
-                  width: 700.w,
-                  color: Colors.grey,
-                  child: Text(
-                    'Quote ',
-                    style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
-                  ),
-                ),
+                QuoteWidget(),
                 height,
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.amber,
-                    child: Center(child: Text('Story')),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: FloatingActionButton.extended(
-                      onPressed: () {}, label: Icon(Icons.restart_alt)),
-                )
+                StoryWidget(),
+                RestartButtonWidget(),
               ],
             ),
           ),
