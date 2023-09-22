@@ -20,14 +20,16 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: Colors.red,
                   alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
                       CircleAvatar(
-                        radius: 60,
+                        backgroundColor: Colors.white,
+                        radius: 70,
+                        backgroundImage: AssetImage(
+                          'assets/homePage_image.webp',
+                        ),
                       ),
-                      width,
                       Text(
                         'Hi Amigo!',
                         style: TextStyle(
