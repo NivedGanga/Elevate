@@ -1,9 +1,11 @@
-import 'dart:developer';
-
-import 'package:elevate/infrastructure/auth/auth_repo.dart';
 import 'package:elevate/presentation/shared/constants.dart';
+import 'package:elevate/presentation/loginscreen/widgets/divider_widget.dart';
+import 'package:elevate/presentation/loginscreen/widgets/footerWidget.dart';
+import 'package:elevate/presentation/loginscreen/widgets/googleSignIn_widget.dart';
+import 'package:elevate/presentation/loginscreen/widgets/login_email-Widget.dart';
+import 'package:elevate/presentation/loginscreen/widgets/password_widget.dart';
+import 'package:elevate/presentation/loginscreen/widgets/registrationButton_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -23,134 +25,25 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/login_vector-.png"),
+              LoginEmailWidget(emailController: _emailController),
               height,
-              TextFormField(
-                validator: (value) =>
-                    (value == null || value.isEmpty) ? 'Enter Email' : null,
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person),
-                    hintText: 'Email',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
+              PasswordWidget(
+                  showPassword: _showPassword,
+                  passwordController: _passwordController),
+              height,
+              RegistrationButtonWidget(
+                text: 'Login', function: (){},
               ),
               height,
-              ValueListenableBuilder(
-                  valueListenable: _showPassword,
-                  builder: (context, value, Widget_) {
-                    return TextFormField(
-                      validator: (value) => (value == null || value.isEmpty)
-                          ? 'Enter Password'
-                          : null,
-                      controller: _passwordController,
-                      obscureText: value,
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.password),
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                _showPassword.value = !_showPassword.value;
-                              },
-                              icon: Icon(value
-                                  ? Icons.visibility_off
-                                  : Icons.visibility)),
-                          hintText: 'Password',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    );
-                  }),
+              DividerWidget(),
               height,
-              SizedBox(
-                  width: double.infinity,
-                  height: 150.h,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        FocusScope.of(context).unfocus();
-                        if (_formKey.currentState!.validate()) {
-                          log('ok');
-                        }
-                      },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                      style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.r))),
-                          backgroundColor: MaterialStatePropertyAll(
-                            Theme.of(context).colorScheme.primaryContainer,
-                          )))),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  Expanded(child: Divider()),
-                  Text(
-                    'OR',
-                    style: TextStyle(fontSize: 18, color: Colors.grey[700]),
-                  ),
-                  Expanded(child: Divider())
-                ],
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Container(
-                height: 150.h,
-                child: Material(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.r)),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(50.r),
-                    splashFactory: InkSparkle.splashFactory,
-                    splashColor: Color.fromARGB(255, 255, 193, 212),
-                    onTap: () async {
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 22, vertical: 8),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Image(
-                                image: AssetImage(
-                                    'assets/auth/google-logo-9808.png'),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "Sign in with Google",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Expanded(
-                            child: SizedBox(),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              GoogleSignInWidget(),
               height,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Don't have an account?"),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/signUp');
-                    },
-                    child: Text('Sign Up'),
-                  )
-                ],
-              ),
+              Footer(
+                text1: "Don't have an account?",
+                text2: "Sign Up",
+                page: '/signUp',
+              )
             ],
           ),
         ),
@@ -158,3 +51,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
