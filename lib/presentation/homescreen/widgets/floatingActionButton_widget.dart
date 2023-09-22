@@ -12,14 +12,20 @@ class FloatingActionButtonWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          width: 250.w,
+          width: 95.w,
+        ),
+        Expanded(
+          child: FloatingActionButton(
+            heroTag: 'speak',
+            onPressed: () {},
+            child: Icon(Icons.mic),
+          ),
+        ),
+        SizedBox(
+          width: 15,
         ),
         FloatingActionButton(
-          heroTag: 'speak',
-          onPressed: () {},
-          child: Icon(Icons.mic),
-        ),
-        FloatingActionButton(
+          backgroundColor: Theme.of(context).colorScheme.background,
           onPressed: () {},
           child: Icon(Icons.restart_alt),
           heroTag: 'mic',

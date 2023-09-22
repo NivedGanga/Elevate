@@ -44,8 +44,16 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Elevate",
         initialRoute: '/',
-        theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: lightColorScheme,
+          fontFamily: 'Outfit',
+        ),
+        darkTheme: ThemeData(
+          useMaterial3: true,
+          colorScheme: darkColorScheme,
+          fontFamily: 'Outfit',
+        ),
         routes: {
           '/': (context) => SplashScreen(),
           '/login': (context) => LoginScreen(),
