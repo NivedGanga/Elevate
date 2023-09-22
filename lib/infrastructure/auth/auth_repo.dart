@@ -93,8 +93,6 @@ class AuthRepo implements IAuthRepo {
       rndnumber = rndnumber + rnd.nextInt(9).toString();
     }
 
-    final smtpServer = gmail(username, password);
-
     final message = Message()
       ..from = Address(username, 'ELEVATE')
       ..recipients.add(recipienEmail)
@@ -102,9 +100,10 @@ class AuthRepo implements IAuthRepo {
       ..html = html(rndnumber);
 
     try {
+      final smtpServer = gmail(username, password);
       var connection = PersistentConnection(smtpServer);
-      await connection.send(message);
 
+      await connection.send(message);
       await connection.close();
     } on MailerException catch (_) {
       return left(MainFailure.clientFailure());
@@ -116,10 +115,10 @@ class AuthRepo implements IAuthRepo {
   @override
   Future<Either<MainFailure, int>> verifyOtp(
       {required String otp, required String enteredOtp}) async {
-    if (otp == enteredOtp) {
-      return right(1);
+    if (int.parse(otp) == int.parse(enteredOtp)) {
+      return right(int.parse(otp));
     }
-    return left(MainFailure.otherFailure("OTP is not correct"));
+    return left(MainFailure.otherFailure("Incurrect OTP"));
   }
 
   String html(String rndnumber) => '''<!DOCTYPE html>

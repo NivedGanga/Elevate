@@ -45,7 +45,7 @@ mixin _$MainFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
-    required TResult Function(_FirebaseFailure value) firebaseFailure,
+    required TResult Function(FirebaseFailure value) firebaseFailure,
     required TResult Function(_OtherFailure value) otherFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ mixin _$MainFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
-    TResult? Function(_FirebaseFailure value)? firebaseFailure,
+    TResult? Function(FirebaseFailure value)? firebaseFailure,
     TResult? Function(_OtherFailure value)? otherFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$MainFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
-    TResult Function(_FirebaseFailure value)? firebaseFailure,
+    TResult Function(FirebaseFailure value)? firebaseFailure,
     TResult Function(_OtherFailure value)? otherFailure,
     required TResult orElse(),
   }) =>
@@ -163,7 +163,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
-    required TResult Function(_FirebaseFailure value) firebaseFailure,
+    required TResult Function(FirebaseFailure value) firebaseFailure,
     required TResult Function(_OtherFailure value) otherFailure,
   }) {
     return clientFailure(this);
@@ -174,7 +174,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
-    TResult? Function(_FirebaseFailure value)? firebaseFailure,
+    TResult? Function(FirebaseFailure value)? firebaseFailure,
     TResult? Function(_OtherFailure value)? otherFailure,
   }) {
     return clientFailure?.call(this);
@@ -185,7 +185,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
-    TResult Function(_FirebaseFailure value)? firebaseFailure,
+    TResult Function(FirebaseFailure value)? firebaseFailure,
     TResult Function(_OtherFailure value)? otherFailure,
     required TResult orElse(),
   }) {
@@ -277,7 +277,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
-    required TResult Function(_FirebaseFailure value) firebaseFailure,
+    required TResult Function(FirebaseFailure value) firebaseFailure,
     required TResult Function(_OtherFailure value) otherFailure,
   }) {
     return serverFailure(this);
@@ -288,7 +288,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
-    TResult? Function(_FirebaseFailure value)? firebaseFailure,
+    TResult? Function(FirebaseFailure value)? firebaseFailure,
     TResult? Function(_OtherFailure value)? otherFailure,
   }) {
     return serverFailure?.call(this);
@@ -299,7 +299,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
-    TResult Function(_FirebaseFailure value)? firebaseFailure,
+    TResult Function(FirebaseFailure value)? firebaseFailure,
     TResult Function(_OtherFailure value)? otherFailure,
     required TResult orElse(),
   }) {
@@ -315,20 +315,20 @@ abstract class _ServerFailure implements MainFailure {
 }
 
 /// @nodoc
-abstract class _$$_FirebaseFailureCopyWith<$Res> {
-  factory _$$_FirebaseFailureCopyWith(
-          _$_FirebaseFailure value, $Res Function(_$_FirebaseFailure) then) =
-      __$$_FirebaseFailureCopyWithImpl<$Res>;
+abstract class _$$FirebaseFailureCopyWith<$Res> {
+  factory _$$FirebaseFailureCopyWith(
+          _$FirebaseFailure value, $Res Function(_$FirebaseFailure) then) =
+      __$$FirebaseFailureCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_FirebaseFailureCopyWithImpl<$Res>
-    extends _$MainFailureCopyWithImpl<$Res, _$_FirebaseFailure>
-    implements _$$_FirebaseFailureCopyWith<$Res> {
-  __$$_FirebaseFailureCopyWithImpl(
-      _$_FirebaseFailure _value, $Res Function(_$_FirebaseFailure) _then)
+class __$$FirebaseFailureCopyWithImpl<$Res>
+    extends _$MainFailureCopyWithImpl<$Res, _$FirebaseFailure>
+    implements _$$FirebaseFailureCopyWith<$Res> {
+  __$$FirebaseFailureCopyWithImpl(
+      _$FirebaseFailure _value, $Res Function(_$FirebaseFailure) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +336,7 @@ class __$$_FirebaseFailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_FirebaseFailure(
+    return _then(_$FirebaseFailure(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -347,8 +347,8 @@ class __$$_FirebaseFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FirebaseFailure implements _FirebaseFailure {
-  const _$_FirebaseFailure(this.message);
+class _$FirebaseFailure implements FirebaseFailure {
+  const _$FirebaseFailure(this.message);
 
   @override
   final String message;
@@ -362,7 +362,7 @@ class _$_FirebaseFailure implements _FirebaseFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FirebaseFailure &&
+            other is _$FirebaseFailure &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -372,8 +372,8 @@ class _$_FirebaseFailure implements _FirebaseFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FirebaseFailureCopyWith<_$_FirebaseFailure> get copyWith =>
-      __$$_FirebaseFailureCopyWithImpl<_$_FirebaseFailure>(this, _$identity);
+  _$$FirebaseFailureCopyWith<_$FirebaseFailure> get copyWith =>
+      __$$FirebaseFailureCopyWithImpl<_$FirebaseFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -417,7 +417,7 @@ class _$_FirebaseFailure implements _FirebaseFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
-    required TResult Function(_FirebaseFailure value) firebaseFailure,
+    required TResult Function(FirebaseFailure value) firebaseFailure,
     required TResult Function(_OtherFailure value) otherFailure,
   }) {
     return firebaseFailure(this);
@@ -428,7 +428,7 @@ class _$_FirebaseFailure implements _FirebaseFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
-    TResult? Function(_FirebaseFailure value)? firebaseFailure,
+    TResult? Function(FirebaseFailure value)? firebaseFailure,
     TResult? Function(_OtherFailure value)? otherFailure,
   }) {
     return firebaseFailure?.call(this);
@@ -439,7 +439,7 @@ class _$_FirebaseFailure implements _FirebaseFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
-    TResult Function(_FirebaseFailure value)? firebaseFailure,
+    TResult Function(FirebaseFailure value)? firebaseFailure,
     TResult Function(_OtherFailure value)? otherFailure,
     required TResult orElse(),
   }) {
@@ -450,12 +450,12 @@ class _$_FirebaseFailure implements _FirebaseFailure {
   }
 }
 
-abstract class _FirebaseFailure implements MainFailure {
-  const factory _FirebaseFailure(final String message) = _$_FirebaseFailure;
+abstract class FirebaseFailure implements MainFailure {
+  const factory FirebaseFailure(final String message) = _$FirebaseFailure;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_FirebaseFailureCopyWith<_$_FirebaseFailure> get copyWith =>
+  _$$FirebaseFailureCopyWith<_$FirebaseFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -562,7 +562,7 @@ class _$_OtherFailure implements _OtherFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
-    required TResult Function(_FirebaseFailure value) firebaseFailure,
+    required TResult Function(FirebaseFailure value) firebaseFailure,
     required TResult Function(_OtherFailure value) otherFailure,
   }) {
     return otherFailure(this);
@@ -573,7 +573,7 @@ class _$_OtherFailure implements _OtherFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
-    TResult? Function(_FirebaseFailure value)? firebaseFailure,
+    TResult? Function(FirebaseFailure value)? firebaseFailure,
     TResult? Function(_OtherFailure value)? otherFailure,
   }) {
     return otherFailure?.call(this);
@@ -584,7 +584,7 @@ class _$_OtherFailure implements _OtherFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
-    TResult Function(_FirebaseFailure value)? firebaseFailure,
+    TResult Function(FirebaseFailure value)? firebaseFailure,
     TResult Function(_OtherFailure value)? otherFailure,
     required TResult orElse(),
   }) {

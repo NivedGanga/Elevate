@@ -353,46 +353,13 @@ abstract class _VerifyOtp implements OtpEvent {
 
 /// @nodoc
 mixin _$OtpState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)
-        $default, {
-    required TResult Function() initial,
-  }) =>
+  Option<Either<MainFailure, int>> get otpFailureOrSuccess =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)?
-        $default, {
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_OtpState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_OtpState value)? $default, {
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_OtpState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  int? get otp => throw _privateConstructorUsedError;
+  bool get isVerified => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $OtpStateCopyWith<OtpState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -400,6 +367,11 @@ mixin _$OtpState {
 abstract class $OtpStateCopyWith<$Res> {
   factory $OtpStateCopyWith(OtpState value, $Res Function(OtpState) then) =
       _$OtpStateCopyWithImpl<$Res, OtpState>;
+  @useResult
+  $Res call(
+      {Option<Either<MainFailure, int>> otpFailureOrSuccess,
+      int? otp,
+      bool isVerified});
 }
 
 /// @nodoc
@@ -411,15 +383,42 @@ class _$OtpStateCopyWithImpl<$Res, $Val extends OtpState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? otpFailureOrSuccess = null,
+    Object? otp = freezed,
+    Object? isVerified = null,
+  }) {
+    return _then(_value.copyWith(
+      otpFailureOrSuccess: null == otpFailureOrSuccess
+          ? _value.otpFailureOrSuccess
+          : otpFailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<MainFailure, int>>,
+      otp: freezed == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isVerified: null == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_OtpStateCopyWith<$Res> {
+abstract class _$$_OtpStateCopyWith<$Res> implements $OtpStateCopyWith<$Res> {
   factory _$$_OtpStateCopyWith(
           _$_OtpState value, $Res Function(_$_OtpState) then) =
       __$$_OtpStateCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({Option<Either<MainFailure, int>> otpFailureOrSuccess});
+  $Res call(
+      {Option<Either<MainFailure, int>> otpFailureOrSuccess,
+      int? otp,
+      bool isVerified});
 }
 
 /// @nodoc
@@ -434,12 +433,22 @@ class __$$_OtpStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? otpFailureOrSuccess = null,
+    Object? otp = freezed,
+    Object? isVerified = null,
   }) {
     return _then(_$_OtpState(
       otpFailureOrSuccess: null == otpFailureOrSuccess
           ? _value.otpFailureOrSuccess
           : otpFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Option<Either<MainFailure, int>>,
+      otp: freezed == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isVerified: null == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -447,14 +456,21 @@ class __$$_OtpStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OtpState implements _OtpState {
-  const _$_OtpState({required this.otpFailureOrSuccess});
+  const _$_OtpState(
+      {required this.otpFailureOrSuccess,
+      required this.otp,
+      required this.isVerified});
 
   @override
   final Option<Either<MainFailure, int>> otpFailureOrSuccess;
+  @override
+  final int? otp;
+  @override
+  final bool isVerified;
 
   @override
   String toString() {
-    return 'OtpState(otpFailureOrSuccess: $otpFailureOrSuccess)';
+    return 'OtpState(otpFailureOrSuccess: $otpFailureOrSuccess, otp: $otp, isVerified: $isVerified)';
   }
 
   @override
@@ -463,195 +479,37 @@ class _$_OtpState implements _OtpState {
         (other.runtimeType == runtimeType &&
             other is _$_OtpState &&
             (identical(other.otpFailureOrSuccess, otpFailureOrSuccess) ||
-                other.otpFailureOrSuccess == otpFailureOrSuccess));
+                other.otpFailureOrSuccess == otpFailureOrSuccess) &&
+            (identical(other.otp, otp) || other.otp == otp) &&
+            (identical(other.isVerified, isVerified) ||
+                other.isVerified == isVerified));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, otpFailureOrSuccess);
+  int get hashCode =>
+      Object.hash(runtimeType, otpFailureOrSuccess, otp, isVerified);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_OtpStateCopyWith<_$_OtpState> get copyWith =>
       __$$_OtpStateCopyWithImpl<_$_OtpState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)
-        $default, {
-    required TResult Function() initial,
-  }) {
-    return $default(otpFailureOrSuccess);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)?
-        $default, {
-    TResult? Function()? initial,
-  }) {
-    return $default?.call(otpFailureOrSuccess);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(otpFailureOrSuccess);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_OtpState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_OtpState value)? $default, {
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_OtpState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _OtpState implements OtpState {
   const factory _OtpState(
-      {required final Option<Either<MainFailure, int>>
-          otpFailureOrSuccess}) = _$_OtpState;
+      {required final Option<Either<MainFailure, int>> otpFailureOrSuccess,
+      required final int? otp,
+      required final bool isVerified}) = _$_OtpState;
 
+  @override
   Option<Either<MainFailure, int>> get otpFailureOrSuccess;
+  @override
+  int? get otp;
+  @override
+  bool get isVerified;
+  @override
   @JsonKey(ignore: true)
   _$$_OtpStateCopyWith<_$_OtpState> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$OtpStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'OtpState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)
-        $default, {
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)?
-        $default, {
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Option<Either<MainFailure, int>> otpFailureOrSuccess)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_OtpState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_OtpState value)? $default, {
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_OtpState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements OtpState {
-  const factory _Initial() = _$_Initial;
 }

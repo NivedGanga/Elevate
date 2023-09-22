@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegistrationButtonWidget extends StatelessWidget {
   final String text;
-  final VoidCallback? function;
+  final VoidCallback function;
   const RegistrationButtonWidget({
     super.key,
     required this.text,
