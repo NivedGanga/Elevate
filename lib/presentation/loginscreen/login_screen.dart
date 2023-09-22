@@ -32,7 +32,11 @@ class LoginScreen extends StatelessWidget {
                   passwordController: _passwordController),
               height,
               RegistrationButtonWidget(
-                text: 'Login', function: (){},
+                text: 'Login',
+                function: () {
+                  Navigator.of(context).pushNamed('/home');
+                  
+                },
               ),
               height,
               DividerWidget(),
@@ -51,4 +55,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegistrationButtonWidget extends StatelessWidget {
   final String text;
-  final Function function;
+  final VoidCallback? function;
   const RegistrationButtonWidget({
     super.key,
     required this.text,
@@ -16,7 +16,7 @@ class RegistrationButtonWidget extends StatelessWidget {
         width: double.infinity,
         height: 53,
         child: ElevatedButton(
-            onPressed: ()=>function,
+            onPressed: function,
             child: Text(
               text,
               style: TextStyle(color: Colors.black, fontSize: 18),
