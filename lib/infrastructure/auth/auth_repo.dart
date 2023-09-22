@@ -173,4 +173,11 @@ class AuthRepo implements IAuthRepo {
 </body>
 </html>
 ''';
+
+  @override
+  Future<void> removeSharedpref() async {
+    final sharedPref = SharedPreferences.getInstance();
+    await sharedPref.then((value) => value.remove('uid'));
+    return;
+  }
 }

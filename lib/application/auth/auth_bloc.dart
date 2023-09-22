@@ -43,5 +43,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+    on<_SignOut>((event, emit) async {
+      final responce = await _authRepo.logout();
+      await responce.fold((failure) {
+        emit(state.copyWith(
+          authFailureOrSuccess: some(left(failure)),
+        ));
+      }, (sucess) async {
+        await _authRepo.removeSharedpref();
+        emit(state.copyWith(
+          authFailureOrSuccess: Some(right('')),
+        ));
+      });
+    });
   }
 }
