@@ -3,6 +3,7 @@ import 'package:elevate/application/otp/otp_bloc.dart';
 import 'package:elevate/application/splash/splash_bloc.dart';
 import 'package:elevate/domain/di/injectable.dart';
 import 'package:elevate/firebase_options.dart';
+import 'package:elevate/presentation/detailsScreen/detailsScreen.dart';
 import 'package:elevate/presentation/homescreen/homescreen.dart';
 import 'package:elevate/presentation/loginscreen/login_screen.dart';
 import 'package:elevate/presentation/splash_screen/splash_screen.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => SplashScreen(),
           '/login': (context) => LoginScreen(),
           '/signUp': (context) => SignUpScreen(),
+          '/details': (context) => PersonalDetails(),
           '/home': (context) => HomeScreen(),
         },
       ),

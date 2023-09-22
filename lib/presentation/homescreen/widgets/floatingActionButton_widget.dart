@@ -28,7 +28,7 @@ class FloatingActionButtonWidget extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           onPressed: () {},
           child: Icon(Icons.restart_alt),
-          heroTag: 'mic',
+          heroTag: 'restart',
         ),
       ],
     );
