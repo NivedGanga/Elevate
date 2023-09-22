@@ -75,7 +75,7 @@ class AuthRepo implements IAuthRepo {
   @override
   Future<Either<MainFailure, String>> googleSignIn() async {
     //   try{
-    //     Googl
+    //
     //   }catch(e){
 
     //   }
