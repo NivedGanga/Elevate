@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:elevate/domain/auth/i_auth_repo.dart';
 import 'package:elevate/domain/failure/main_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
@@ -74,12 +75,22 @@ class AuthRepo implements IAuthRepo {
 
   @override
   Future<Either<MainFailure, String>> googleSignIn() async {
-    //   try{
-    //
-    //   }catch(e){
-
-    //   }
-    return right('');
+    try {
+      final GoogleSignInAccount? _googleSIgnInAccount =
+          await GoogleSignIn().signIn();
+      if (_googleSIgnInAccount != null) {
+        final GoogleSignInAuthentication _googleSignInAuthentication =
+            await _googleSIgnInAccount.authentication;
+        final OAuthCredential _credential = GoogleAuthProvider.credential(
+          accessToken: _googleSignInAuthentication.accessToken,
+          idToken: _googleSignInAuthentication.idToken,
+        );
+        await FirebaseAuth.instance.signInWithCredential(_credential);
+      }
+      return right(_googleSIgnInAccount!.id);
+    } catch (e) {
+      return left(MainFailure.firebaseFailure(e.toString()));
+    }
   }
 
   @override
