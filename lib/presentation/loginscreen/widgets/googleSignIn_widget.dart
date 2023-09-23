@@ -17,11 +17,13 @@ class GoogleSignInWidget extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
         child: InkWell(
           borderRadius: BorderRadius.circular(50.r),
-          splashFactory: InkSparkle.splashFactory,
+          splashFactory: InkSparkle.splashFactory, 
           splashColor: Color.fromARGB(255, 255, 193, 212),
-          onTap: () {
+          onTap: ()  {
             FocusScope.of(context).unfocus();
-            AuthRepo().googleSignIn();
+             AuthRepo().googleSignIn();
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/home', (route) => false);
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),

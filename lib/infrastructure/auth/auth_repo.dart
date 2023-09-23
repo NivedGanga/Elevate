@@ -94,6 +94,16 @@ class AuthRepo implements IAuthRepo {
   }
 
   @override
+  Future<Either<MainFailure, bool>> googleSignOut() async {
+    try {
+      await GoogleSignIn().signOut();
+      return right(true);
+    } catch (e) {
+      return left(MainFailure.firebaseFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<MainFailure, int>> sendOtp(String recipienEmail) async {
     String username = 'javalab4us@gmail.com';
     String password = 'tfgo zdke kvqm bxrq';
@@ -191,4 +201,6 @@ class AuthRepo implements IAuthRepo {
     await sharedPref.then((value) => value.remove('uid'));
     return;
   }
+  
+  
 }

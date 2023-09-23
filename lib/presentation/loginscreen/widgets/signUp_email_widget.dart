@@ -40,7 +40,7 @@ class SignUpEmailFiedWidget extends StatelessWidget {
                           _loading.value = false;
 
                           displaySnackbar(
-                              context: context, message:"Otp Sending Failed");
+                              context: context, message: "Otp Sending Failed");
                         },
                         (sucess) {
                           _loading.value = false;
@@ -60,7 +60,10 @@ class SignUpEmailFiedWidget extends StatelessWidget {
                       child: !value
                           ? Text(
                               'Send OTP',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                             )
                           : Container(
                               height: 80.h,

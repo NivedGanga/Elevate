@@ -8,6 +8,7 @@ abstract class IAuthRepo {
   Future<void> registerSharedPref(String uid);
   Future<void> removeSharedpref();
   Future<Either<MainFailure, String>> googleSignIn();
+  Future<Either<MainFailure, bool>> googleSignOut();
   Future<Either<MainFailure, int>> sendOtp(String recipienEmail);
   Future<Either<MainFailure, int>> verifyOtp({required String otp,required String enteredOtp});
 }

@@ -63,7 +63,7 @@ class OtpWidget extends StatelessWidget {
                   }
                   return Text(
                     'Verify',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
                   );
                 },
               )),
