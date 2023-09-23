@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Elevate",
-        initialRoute: '/',
+        // initialRoute: '/',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: lightColorScheme,
@@ -55,13 +55,14 @@ class MyApp extends StatelessWidget {
           colorScheme: darkColorScheme,
           fontFamily: 'Outfit',
         ),
-        routes: {
-          '/': (context) => SplashScreen(),
-          '/login': (context) => LoginScreen(),
-          '/signUp': (context) => SignUpScreen(),
-          '/details': (context) => PersonalDetails(),
-          '/home': (context) => HomeScreen(),
-        },
+        // routes: {
+        //   '/': (context) => SplashScreen(),
+        //   '/login': (context) => LoginScreen(),
+        //   '/signUp': (context) => SignUpScreen(),
+        //   '/details': (context) => PersonalDetails(),
+        //   '/home': (context) => HomeScreen(),
+        // },
+        home: PersonalDetails(),
       ),
     );
   }

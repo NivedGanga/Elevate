@@ -47,6 +47,7 @@ dependencies:
   injectable: ^2.3.0
   json_annotation: ^4.8.1
   mailer: ^6.0.1
+  multiselect_formfield: ^0.1.7
   shared_preferences: ^2.2.1
 
 dev_dependencies:
@@ -74,6 +75,8 @@ flutter:
     - assets/homePage_image.webp
     - assets/astro-.png
     - assets/blue_astro.png
+    - assets/detailsPage_image.jpg
+    - assets/detailsPage_image-removebg.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

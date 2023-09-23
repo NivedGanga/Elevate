@@ -15,7 +15,9 @@ class SubmitButton extends StatelessWidget {
             onPressed: function,
             child: Text(
               name,
-              style: TextStyle(color: Colors.black, fontSize: 18),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontSize: 18),
             ),
             style: ButtonStyle(
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(
