@@ -20,18 +20,21 @@ mixin _$OtpEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String recipienEmail) sendOtp,
     required TResult Function(String otp, String enteredOtp) verifyOtp,
+    required TResult Function() resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String recipienEmail)? sendOtp,
     TResult? Function(String otp, String enteredOtp)? verifyOtp,
+    TResult? Function()? resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recipienEmail)? sendOtp,
     TResult Function(String otp, String enteredOtp)? verifyOtp,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$OtpEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
+    required TResult Function(_ResetState value) resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
+    TResult? Function(_ResetState value)? resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,6 +145,7 @@ class _$_SendOtp implements _SendOtp {
   TResult when<TResult extends Object?>({
     required TResult Function(String recipienEmail) sendOtp,
     required TResult Function(String otp, String enteredOtp) verifyOtp,
+    required TResult Function() resetState,
   }) {
     return sendOtp(recipienEmail);
   }
@@ -148,6 +155,7 @@ class _$_SendOtp implements _SendOtp {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String recipienEmail)? sendOtp,
     TResult? Function(String otp, String enteredOtp)? verifyOtp,
+    TResult? Function()? resetState,
   }) {
     return sendOtp?.call(recipienEmail);
   }
@@ -157,6 +165,7 @@ class _$_SendOtp implements _SendOtp {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recipienEmail)? sendOtp,
     TResult Function(String otp, String enteredOtp)? verifyOtp,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -170,6 +179,7 @@ class _$_SendOtp implements _SendOtp {
   TResult map<TResult extends Object?>({
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return sendOtp(this);
   }
@@ -179,6 +189,7 @@ class _$_SendOtp implements _SendOtp {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return sendOtp?.call(this);
   }
@@ -188,6 +199,7 @@ class _$_SendOtp implements _SendOtp {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -281,6 +293,7 @@ class _$_VerifyOtp implements _VerifyOtp {
   TResult when<TResult extends Object?>({
     required TResult Function(String recipienEmail) sendOtp,
     required TResult Function(String otp, String enteredOtp) verifyOtp,
+    required TResult Function() resetState,
   }) {
     return verifyOtp(otp, enteredOtp);
   }
@@ -290,6 +303,7 @@ class _$_VerifyOtp implements _VerifyOtp {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String recipienEmail)? sendOtp,
     TResult? Function(String otp, String enteredOtp)? verifyOtp,
+    TResult? Function()? resetState,
   }) {
     return verifyOtp?.call(otp, enteredOtp);
   }
@@ -299,6 +313,7 @@ class _$_VerifyOtp implements _VerifyOtp {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recipienEmail)? sendOtp,
     TResult Function(String otp, String enteredOtp)? verifyOtp,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (verifyOtp != null) {
@@ -312,6 +327,7 @@ class _$_VerifyOtp implements _VerifyOtp {
   TResult map<TResult extends Object?>({
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return verifyOtp(this);
   }
@@ -321,6 +337,7 @@ class _$_VerifyOtp implements _VerifyOtp {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return verifyOtp?.call(this);
   }
@@ -330,6 +347,7 @@ class _$_VerifyOtp implements _VerifyOtp {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (verifyOtp != null) {
@@ -349,6 +367,114 @@ abstract class _VerifyOtp implements OtpEvent {
   @JsonKey(ignore: true)
   _$$_VerifyOtpCopyWith<_$_VerifyOtp> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ResetStateCopyWith<$Res> {
+  factory _$$_ResetStateCopyWith(
+          _$_ResetState value, $Res Function(_$_ResetState) then) =
+      __$$_ResetStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ResetStateCopyWithImpl<$Res>
+    extends _$OtpEventCopyWithImpl<$Res, _$_ResetState>
+    implements _$$_ResetStateCopyWith<$Res> {
+  __$$_ResetStateCopyWithImpl(
+      _$_ResetState _value, $Res Function(_$_ResetState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ResetState implements _ResetState {
+  const _$_ResetState();
+
+  @override
+  String toString() {
+    return 'OtpEvent.resetState()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ResetState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String recipienEmail) sendOtp,
+    required TResult Function(String otp, String enteredOtp) verifyOtp,
+    required TResult Function() resetState,
+  }) {
+    return resetState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String recipienEmail)? sendOtp,
+    TResult? Function(String otp, String enteredOtp)? verifyOtp,
+    TResult? Function()? resetState,
+  }) {
+    return resetState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String recipienEmail)? sendOtp,
+    TResult Function(String otp, String enteredOtp)? verifyOtp,
+    TResult Function()? resetState,
+    required TResult orElse(),
+  }) {
+    if (resetState != null) {
+      return resetState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendOtp value) sendOtp,
+    required TResult Function(_VerifyOtp value) verifyOtp,
+    required TResult Function(_ResetState value) resetState,
+  }) {
+    return resetState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendOtp value)? sendOtp,
+    TResult? Function(_VerifyOtp value)? verifyOtp,
+    TResult? Function(_ResetState value)? resetState,
+  }) {
+    return resetState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendOtp value)? sendOtp,
+    TResult Function(_VerifyOtp value)? verifyOtp,
+    TResult Function(_ResetState value)? resetState,
+    required TResult orElse(),
+  }) {
+    if (resetState != null) {
+      return resetState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetState implements OtpEvent {
+  const factory _ResetState() = _$_ResetState;
 }
 
 /// @nodoc

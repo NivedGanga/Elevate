@@ -34,13 +34,16 @@ class SignUpScreen extends StatelessWidget {
           (either) => either.fold(
             (failure) {
               if (failure is FirebaseFailure) {
+                context.read<OtpBloc>().add(OtpEvent.resetState());
                 displaySnackbar(context: context, message: failure.message);
               } else {
+                context.read<OtpBloc>().add(OtpEvent.resetState());
                 displaySnackbar(
                     context: context, message: "Something went wrong");
               }
             },
             (sucess) async {
+              context.read<OtpBloc>().add(OtpEvent.resetState());
               Navigator.pushReplacementNamed(context, '/details');
             },
           ),

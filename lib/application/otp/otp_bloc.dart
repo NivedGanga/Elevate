@@ -44,5 +44,12 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         });
       });
     });
+    on<_ResetState>((event, emit) {
+      emit(state.copyWith(
+        otpFailureOrSuccess: none(),
+        otp: null,
+        isVerified: false,
+      ));
+    });
   }
 }
