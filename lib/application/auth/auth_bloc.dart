@@ -56,5 +56,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+    on<_GoogleSIgnIn>((event, emit) async {
+      final responce = await _authRepo.googleSignIn();
+      await responce.fold((failure) {
+        emit(state.copyWith(
+          authFailureOrSuccess: some(left(failure)),
+        ));
+      }, (sucess) async {
+        await _authRepo.registerSharedPref(sucess);
+        emit(state.copyWith(
+          authFailureOrSuccess: some(right(sucess)),
+        ));
+      });
+    });
   }
 }

@@ -2,7 +2,9 @@ import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:elevate/domain/auth/i_auth_repo.dart';
 import 'package:elevate/domain/failure/main_failure.dart';
+import 'package:elevate/domain/user_details/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mailer/mailer.dart';
@@ -22,6 +24,8 @@ class AuthRepo implements IAuthRepo {
       );
 
       if (userCredential.user != null) {
+        UserModel.instance.uid = userCredential.user!.uid;
+        UserModel.instance.email = userCredential.user!.email!;
         return right(userCredential.user!.uid);
       } else {
         return left(
@@ -50,6 +54,7 @@ class AuthRepo implements IAuthRepo {
           .signInWithEmailAndPassword(email: email, password: password);
 
       if (userCredential.user != null) {
+        UserModel.instance.uid = userCredential.user!.uid;
         return right(userCredential.user!.uid);
       } else {
         return left(MainFailure.firebaseFailure('Sign-in failed.'));
@@ -85,11 +90,19 @@ class AuthRepo implements IAuthRepo {
           accessToken: _googleSignInAuthentication.accessToken,
           idToken: _googleSignInAuthentication.idToken,
         );
-
-        if (_googleSIgnInAccount.email != null) {
+        if (_googleSIgnInAccount.email.isNotEmpty) {
+          await FirebaseAuth.instance
+              .fetchSignInMethodsForEmail("nivedganga@gmail.com")
+              .then((value) => {
+                    if (value.isEmpty)
+                      {print("No user found with this email.")}
+                    else
+                      {print("User with this email exists.")}
+                  });
           final UserCredential _userCredential =
               await FirebaseAuth.instance.signInWithCredential(_credential);
           if (_userCredential.user != null) {
+            UserModel.instance.uid = _userCredential.user!.uid;
             return right(_userCredential.user!.uid);
           }
         }

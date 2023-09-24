@@ -1,6 +1,7 @@
 import 'package:elevate/application/auth/auth_bloc.dart';
 import 'package:elevate/application/otp/otp_bloc.dart';
 import 'package:elevate/domain/failure/main_failure.dart';
+import 'package:elevate/infrastructure/user_details/user_details_repo.dart';
 import 'package:elevate/presentation/shared/constants.dart';
 import 'package:elevate/presentation/loginscreen/widgets/divider_widget.dart';
 import 'package:elevate/presentation/loginscreen/widgets/signUp_email_widget.dart';
@@ -25,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         state.authFailureOrSuccess.fold(
           () {},
           (either) => either.fold(
@@ -37,8 +38,8 @@ class SignUpScreen extends StatelessWidget {
                     context: context, message: "Something went wrong");
               }
             },
-            (sucess) {
-              Navigator.pushNamed(context, '/home');
+            (sucess) async {
+              Navigator.pushReplacementNamed(context, '/details');
             },
           ),
         );
