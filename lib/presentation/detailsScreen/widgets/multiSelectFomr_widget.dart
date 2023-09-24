@@ -1,4 +1,5 @@
 import 'package:elevate/domain/user_details/genre.dart';
+import 'package:elevate/domain/user_details/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
@@ -11,8 +12,6 @@ class MultiSelectFormWidget extends StatefulWidget {
 
 class _MultiSelectFormWidgetState extends State<MultiSelectFormWidget> {
   GlobalKey<FormState> _formKey = GlobalKey();
-
-  dynamic selectedGenres = [];
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +46,11 @@ class _MultiSelectFormWidgetState extends State<MultiSelectFormWidget> {
         okButtonLabel: 'OK',
         cancelButtonLabel: 'CANCEL',
         hintWidget: Text('Please select one or more options'),
-        initialValue: selectedGenres,
+        initialValue: UserModel.instance.genres,
         onSaved: (value) {
           if (value == null) return;
           setState(() {
-            selectedGenres = value;
+            UserModel.instance.genres = value;
           });
         },
       ),

@@ -1,3 +1,4 @@
+import 'package:elevate/application/audio/audio_bloc.dart';
 import 'package:elevate/application/story/story_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class StoryWidget extends StatelessWidget {
   StoryWidget({
     super.key,
   });
-  FlutterTts flutterTts = FlutterTts();
+  final FlutterTts flutterTts = FlutterTts();
   speak(String text) async {
     await flutterTts.setLanguage('en-uk');
     await flutterTts.setPitch(1);
@@ -18,7 +19,7 @@ class StoryWidget extends StatelessWidget {
 
   void showPopupMenu(BuildContext context, Offset position, String text) {
     final RenderBox overlay =
-        Overlay.of(context)!.context.findRenderObject() as RenderBox;
+        Overlay.of(context).context.findRenderObject() as RenderBox;
 
     final Animation<double> scaleAnimation = Tween<double>(
       begin: 0.0,
@@ -75,92 +76,156 @@ class StoryWidget extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<StoryBloc>().add(StoryEvent.fetchStory());
     });
-    return BlocBuilder<StoryBloc, StoryState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return Expanded(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        } else {
-          return state.failureOrStory.fold(() => SizedBox(), (a) {
-            return a.fold((l) {
+    return BlocBuilder<AudioBloc, AudioState>(
+      builder: (context, state1) {
+        return BlocBuilder<StoryBloc, StoryState>(
+          builder: (context, state) {
+            if (state1.isLoading) {
               return Expanded(
                 child: Center(
-                  child: Text(
-                    l.map(
-                      serverFailure: (_) => "Server Failure",
-                      clientFailure: (_) => "Client Failure",
-                      firebaseFailure: (value) => value.message,
-                      otherFailure: (value) => value.message,
-                    ),
-                  ),
+                  child: CircularProgressIndicator(),
                 ),
               );
-            }, (r) {
-              final _words = r.split(RegExp(r'[ .]'));
-              _words.removeWhere((word) => word.isEmpty);
-              final List<TextSpan> spans = [];
-              for (int i = 0; i < _words.length; i++) {
-                TextStyle style;
-                if (i.isEven) {
-                  style = TextStyle(
-                    fontSize: 68.sp,
-                    fontFamily: "Outfit",
-                    fontWeight: FontWeight.w400,
-                    height: 1.38,
-                    color: Theme.of(context).colorScheme.background,
+            } else {
+              if (state1.currectedorfailure.isSome()) {
+                return state1.currectedorfailure.fold(() {
+                  return SizedBox();
+                }, (a) {
+                  return a.fold((l) {
+                    return Expanded(
+                      child: Center(
+                        child: Text(
+                          l.map(
+                            serverFailure: (_) => "Server Failure",
+                            clientFailure: (_) => "Client Failurell",
+                            firebaseFailure: (value) => value.message,
+                            otherFailure: (value) => value.message,
+                          ),
+                        ),
+                      ),
+                    );
+                  }, (r) {
+                    final _words = state.story!.split(RegExp(r'[ .]'));
+                    _words.removeWhere((word) => word.isEmpty);
+                    final List<TextSpan> spans = [];
+                    for (int i = 0; i < _words.length; i++) {
+                      TextStyle style;
+                      if (r.comparisonResult![i].isCorrect == "A") {
+                        style = TextStyle(
+                          fontSize: 68.sp,
+                          fontFamily: "Outfit",
+                          fontWeight: FontWeight.w400,
+                          height: 1.38,
+                          color: Theme.of(context).colorScheme.background,
+                        );
+                      } else {
+                        style = TextStyle(
+                          fontSize: 68.sp,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Outfit",
+                          decoration: TextDecoration.underline,
+                          decorationColor: Theme.of(context).colorScheme.error,
+                          decorationStyle: TextDecorationStyle.solid,
+                          color: Theme.of(context).colorScheme.background,
+                        );
+                      }
+                      spans.add(TextSpan(
+                          text: "${_words[i]} ",
+                          style: style,
+                          recognizer: TapGestureRecognizer()
+                            ..onTapDown = (de) {
+                              if (r.comparisonResult![i].isCorrect != "A") {
+                                showPopupMenu(
+                                    context, de.globalPosition, _words[i]);
+                              }
+                            }));
+                    }
+                    return Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                RichText(
+                                  text: TextSpan(children: spans),
+                                  textAlign: TextAlign.start,
+                                ),
+                                SizedBox(
+                                  height: 150.h,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  });
+                });
+              } else {
+                if (state.isLoading) {
+                  return Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   );
                 } else {
-                  style = TextStyle(
-                    fontSize: 68.sp,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "Outfit",
-                    decoration: TextDecoration.underline,
-                    decorationColor: Theme.of(context).colorScheme.error,
-                    decorationStyle: TextDecorationStyle.solid,
-                    color: Theme.of(context).colorScheme.background,
-                  );
+                  return state.failureOrStory.fold(() => SizedBox(), (a) {
+                    return a.fold((l) {
+                      return Expanded(
+                        child: Center(
+                          child: Text(
+                            l.map(
+                              serverFailure: (_) => "Server Failure",
+                              clientFailure: (_) => "Client Failure",
+                              firebaseFailure: (value) => value.message,
+                              otherFailure: (value) => value.message,
+                            ),
+                          ),
+                        ),
+                      );
+                    }, (r) {
+                      return Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          width: double.infinity,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text(r,
+                                      style: TextStyle(
+                                          fontSize: 68.sp,
+                                          fontFamily: "Outfit",
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .background)),
+                                  SizedBox(
+                                    height: 150.h,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+                  });
                 }
-                spans.add(TextSpan(
-                    text: "${_words[i]} ",
-                    style: style,
-                    recognizer: TapGestureRecognizer()
-                      ..onTapDown = (de) {
-                        if (i.isOdd) {
-                          showPopupMenu(context, de.globalPosition, _words[i]);
-                        }
-                      }));
               }
-              return Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          RichText(
-                            text: TextSpan(children: spans),
-                            textAlign: TextAlign.start,
-                          ),
-                          SizedBox(
-                            height: 150.h,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            });
-          });
-        }
+            }
+          },
+        );
       },
     );
   }

@@ -6,6 +6,8 @@ abstract class IUserDetailsRepo {
   Future<Either<MainFailure, void>> postUserDetails({
     required String name,
     required int age,
-    required List<Genre> genrea,
+    required String email,
+    required String genres,
+    required String uid,
   });
 }

@@ -7,4 +7,5 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.signUp(
       {required String email, required String password}) = _SignUp;
   const factory AuthEvent.signOut() = _SignOut;
+  const factory AuthEvent.googleSignIn() = _GoogleSIgnIn;
 }

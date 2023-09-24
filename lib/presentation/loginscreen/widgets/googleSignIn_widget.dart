@@ -1,6 +1,9 @@
+import 'package:elevate/application/auth/auth_bloc.dart';
 import 'package:elevate/infrastructure/auth/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInWidget extends StatelessWidget {
   const GoogleSignInWidget({
@@ -17,13 +20,11 @@ class GoogleSignInWidget extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
         child: InkWell(
           borderRadius: BorderRadius.circular(50.r),
-          splashFactory: InkSparkle.splashFactory, 
+          splashFactory: InkSparkle.splashFactory,
           splashColor: Color.fromARGB(255, 255, 193, 212),
-          onTap: ()  {
+          onTap: () async {
             FocusScope.of(context).unfocus();
-             AuthRepo().googleSignIn();
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil('/home', (route) => false);
+            context.read<AuthBloc>().add(AuthEvent.googleSignIn());
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),

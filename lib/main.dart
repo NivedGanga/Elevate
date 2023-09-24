@@ -1,7 +1,9 @@
+import 'package:elevate/application/audio/audio_bloc.dart';
 import 'package:elevate/application/auth/auth_bloc.dart';
 import 'package:elevate/application/otp/otp_bloc.dart';
 import 'package:elevate/application/splash/splash_bloc.dart';
 import 'package:elevate/application/story/story_bloc.dart';
+import 'package:elevate/application/user_details/user_details_bloc.dart';
 import 'package:elevate/domain/di/injectable.dart';
 import 'package:elevate/firebase_options.dart';
 import 'package:elevate/presentation/detailsScreen/detailsScreen.dart';
@@ -45,6 +47,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<StoryBloc>(
           create: (context) => getIt<StoryBloc>(),
         ),
+        BlocProvider<UserDetailsBloc>(
+          create: (context) => getIt<UserDetailsBloc>(),
+        ),
+        BlocProvider<AudioBloc>(
+          create: (context) => getIt<AudioBloc>(),
+        ),
       ], child: child!),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -67,7 +75,6 @@ class MyApp extends StatelessWidget {
           '/details': (context) => PersonalDetails(),
           '/home': (context) => HomeScreen(),
         },
-        
       ),
     );
   }

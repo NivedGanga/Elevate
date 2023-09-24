@@ -1,9 +1,13 @@
 import 'dart:async';
-import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:elevate/application/audio/audio_bloc.dart';
+import 'package:elevate/application/story/story_bloc.dart';
+import 'package:elevate/domain/user_details/model/user_model.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:record/record.dart';
 
@@ -77,34 +81,7 @@ class _FloatingActionButtonWidgetState
     final path = await _audioRecorder.stop();
 
     if (path != null) {
-      print(path);
-      final fileName = path.split('/').last;
-      print(fileName);
-      Dio dio = Dio(BaseOptions());
-      dio.options.headers["Content-Type"] = "multipart/form-data";
-      FormData data = FormData.fromMap({
-        "audio_file": await MultipartFile.fromFile(
-          path,
-          filename: fileName,
-        ),
-      });
-      try {
-        // final responses = await Dio(BaseOptions()).get(
-        //   "https://elevate01.azurewebsites.net/content/get/stories/",
-        //   data: data,
-        // );
-        final response = await dio.post(
-          "https://elevate01.azurewebsites.net/content/get/stories/",
-          data: data,
-        );
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          print(response.toString());
-        } else {
-          print(response.toString() + "error");
-        }
-      } catch (e) {
-        print(e.toString());
-      }
+      context.read<AudioBloc>().add(AudioEvent.postAudio(path: path));
     }
   }
 
@@ -129,39 +106,65 @@ class _FloatingActionButtonWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 95.w,
-        ),
-        Expanded(
-          child: FloatingActionButton(
-            heroTag: 'speak',
-            onPressed: () {
-              (_recordState != RecordState.stop) ? _stop() : _start();
-            },
-            child: _recordState == RecordState.stop
-                ? Icon(Icons.mic)
-                : Icon(Icons.stop),
-          ),
-        ),
-        SizedBox(
-          width: 15,
-        ),
-        FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.background,
-          onPressed: () {
-            (_recordState == RecordState.pause) ? _resume() : _pause();
-          },
-          child: _recordState == RecordState.stop
-              ? Icon(Icons.restart_alt_sharp)
-              : _recordState == RecordState.pause
-                  ? Icon(Icons.play_arrow)
-                  : Icon(Icons.pause),
-          heroTag: 'restart',
-        ),
-      ],
+    return BlocBuilder<AudioBloc, AudioState>(
+      builder: (context, state) {
+        if (state.currectedorfailure.isSome()) {
+          return Row(
+            children: [
+              SizedBox(
+                width: 95.w,
+              ),
+              Expanded(
+                child: FloatingActionButton(
+                  heroTag: 'next',
+                  onPressed: () {
+                    context.read<StoryBloc>().add(StoryEvent.fetchStory());
+                    context.read<AudioBloc>().add(AudioEvent.clearState());
+                  },
+                  child: Icon(Icons.skip_next),
+                ),
+              ),
+            ],
+          );
+        }
+        if (state.isLoading) {
+          return SizedBox();
+        }
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: 95.w,
+            ),
+            Expanded(
+              child: FloatingActionButton(
+                heroTag: 'speak',
+                onPressed: () {
+                  (_recordState != RecordState.stop) ? _stop() : _start();
+                },
+                child: _recordState == RecordState.stop
+                    ? Icon(Icons.mic)
+                    : Icon(Icons.stop),
+              ),
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            FloatingActionButton(
+              backgroundColor: Theme.of(context).colorScheme.background,
+              onPressed: () {
+                (_recordState == RecordState.pause) ? _resume() : _pause();
+              },
+              child: _recordState == RecordState.stop
+                  ? Icon(Icons.restart_alt_sharp)
+                  : _recordState == RecordState.pause
+                      ? Icon(Icons.play_arrow)
+                      : Icon(Icons.pause),
+              heroTag: 'restart',
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
               }
             },
             (sucess) {
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushReplacementNamed(context, '/home');
             },
           ),
         );
