@@ -25,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
   final ValueNotifier<bool> otpSendNotifier = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) async {
         state.authFailureOrSuccess.fold(
           () {},
@@ -44,76 +44,90 @@ class SignUpScreen extends StatelessWidget {
           ),
         );
       },
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: BlocBuilder<OtpBloc, OtpState>(
-                builder: (context, state) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      height,
-                      height,
-                      Image.asset("assets/login_vector-.png"),
-                      height,
-                      SignUpEmailFiedWidget(
-                          emailController: _emailController,
-                          formKey: _formKey,
-                          loading: otpSendNotifier),
-                      height,
-                      OtpWidget(
-                        otpController: _otpController,
-                        formKey: _formKey,
-                        otp: state.otp,
-                      ),
-                      height,
-                      PasswordWidget(
-                        showPassword: _showPassword,
-                        passwordController: _passwordController,
-                      ),
-                      height,
-                      RegistrationButtonWidget(
-                        text: 'Sign Up',
-                        function: () {
-                          if (state.isVerified == false) {
-                            displaySnackbar(
-                                context: context,
-                                message: "Please verify your email");
-                            return;
-                          }
-                          if (_passwordController.text.length < 6) {
-                            displaySnackbar(
-                                context: context,
-                                message:
-                                    "Password must be atleast 6 characters long");
-                            return;
-                          }
-                          context.read<AuthBloc>().add(AuthEvent.signUp(
-                              email: _emailController.text,
-                              password: _passwordController.text));
-                        },
-                      ),
-                      height,
-                      DividerWidget(),
-                      height,
-                      GoogleSignInWidget(),
-                      height,
-                      Footer(
-                        text1: 'Aready have an account?',
-                        text2: 'Login',
-                        page: '/login',
-                      ),
-                    ],
-                  );
-                },
+      builder: (context, state) {
+        return Stack(
+          children: [
+            Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: BlocBuilder<OtpBloc, OtpState>(
+                      builder: (context, state) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            height,
+                            height,
+                            Image.asset("assets/login_vector-.png"),
+                            height,
+                            SignUpEmailFiedWidget(
+                                emailController: _emailController,
+                                formKey: _formKey,
+                                loading: otpSendNotifier),
+                            height,
+                            OtpWidget(
+                              otpController: _otpController,
+                              formKey: _formKey,
+                              otp: state.otp,
+                            ),
+                            height,
+                            PasswordWidget(
+                              showPassword: _showPassword,
+                              passwordController: _passwordController,
+                            ),
+                            height,
+                            RegistrationButtonWidget(
+                              text: 'Sign Up',
+                              function: () {
+                                if (state.isVerified == false) {
+                                  displaySnackbar(
+                                      context: context,
+                                      message: "Please verify your email");
+                                  return;
+                                }
+                                if (_passwordController.text.length < 6) {
+                                  displaySnackbar(
+                                      context: context,
+                                      message:
+                                          "Password must be atleast 6 characters long");
+                                  return;
+                                }
+                                context.read<AuthBloc>().add(AuthEvent.signUp(
+                                    email: _emailController.text,
+                                    password: _passwordController.text));
+                              },
+                            ),
+                            height,
+                            DividerWidget(),
+                            height,
+                            GoogleSignInWidget(),
+                            height,
+                            Footer(
+                              text1: 'Aready have an account?',
+                              text2: 'Login',
+                              page: '/login',
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
+            state.isLoading
+                ? Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : SizedBox(),
+          ],
+        );
+      },
     );
   }
 }
