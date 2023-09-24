@@ -10,6 +10,8 @@ import 'package:elevate/presentation/loginscreen/widgets/registrationButton_widg
 import 'package:elevate/presentation/shared/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -99,7 +101,10 @@ class LoginScreen extends StatelessWidget {
                   ? Container(
                       color: Colors.black.withOpacity(0.5),
                       child: Center(
-                        child: CircularProgressIndicator(),
+                        child: SpinKitWave(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        size: 100.sp,
+                      ),
                       ),
                     )
                   : SizedBox(),
