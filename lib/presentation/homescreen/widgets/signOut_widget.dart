@@ -19,6 +19,9 @@ class SignOutWidget extends StatelessWidget {
             (failure) {},
             (sucess) {
               if (sucess == "logout") {
+                context.read<AuthBloc>().add(
+                      AuthEvent.resetState(),
+                    );
                 Navigator.pushNamedAndRemoveUntil(
                     context, "/login", (route) => false);
               }
@@ -69,6 +72,7 @@ class SignOutWidget extends StatelessWidget {
                                     AuthEvent.signOut(),
                                   );
                               AuthRepo().googleSignOut();
+
                               Navigator.pop(context);
                             },
                             child: Text('Yes'),

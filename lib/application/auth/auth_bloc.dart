@@ -14,20 +14,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthRepo _authRepo;
   AuthBloc(this._authRepo) : super(AuthState.initial()) {
     on<_SignIn>((event, emit) async {
+      emit(state.copyWith(
+        isLoading: true,
+      ));
       final responce =
           await _authRepo.signin(email: event.email, password: event.password);
       await responce.fold((failure) {
         emit(state.copyWith(
           authFailureOrSuccess: some(left(failure)),
+          isLoading: false,
         ));
       }, (sucess) async {
         await _authRepo.registerSharedPref(sucess);
         emit(state.copyWith(
           authFailureOrSuccess: some(right(sucess)),
+          isLoading: false,
         ));
       });
     });
     on<_SignUp>((event, emit) async {
+      emit(state.copyWith(
+        isLoading: true,
+      ));
       final responce = await _authRepo.signup(
         email: event.email,
         password: event.password,
@@ -35,39 +43,57 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await responce.fold((failure) {
         emit(state.copyWith(
           authFailureOrSuccess: some(left(failure)),
+          isLoading: false,
         ));
       }, (sucess) async {
         await _authRepo.registerSharedPref(sucess);
         emit(state.copyWith(
           authFailureOrSuccess: some(right(sucess)),
+          isLoading: false,
         ));
       });
     });
     on<_SignOut>((event, emit) async {
+      emit(state.copyWith(
+        isLoading: true,
+      ));
       final responce = await _authRepo.logout();
       await responce.fold((failure) {
         emit(state.copyWith(
           authFailureOrSuccess: some(left(failure)),
+          isLoading: false,
         ));
       }, (sucess) async {
         await _authRepo.removeSharedpref();
         emit(state.copyWith(
           authFailureOrSuccess: Some(right('logout')),
+          isLoading: false,
         ));
       });
     });
     on<_GoogleSIgnIn>((event, emit) async {
+      emit(state.copyWith(
+        isLoading: true,
+      ));
       final responce = await _authRepo.googleSignIn();
       await responce.fold((failure) {
         emit(state.copyWith(
           authFailureOrSuccess: some(left(failure)),
+          isLoading: false,
         ));
       }, (sucess) async {
         await _authRepo.registerSharedPref(sucess);
         emit(state.copyWith(
           authFailureOrSuccess: some(right(sucess)),
+          isLoading: false,
         ));
       });
+    });
+    on<_ResetState>((event, emit) {
+      emit(state.copyWith(
+        authFailureOrSuccess: none(),
+        isLoading: false,
+      ));
     });
   }
 }

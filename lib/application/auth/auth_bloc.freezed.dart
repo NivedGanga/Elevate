@@ -22,6 +22,7 @@ mixin _$AuthEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
+    required TResult Function() resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$AuthEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
+    TResult? Function()? resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$AuthEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$AuthEvent {
     required TResult Function(_SignUp value) signUp,
     required TResult Function(_SignOut value) signOut,
     required TResult Function(_GoogleSIgnIn value) googleSignIn,
+    required TResult Function(_ResetState value) resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$AuthEvent {
     TResult? Function(_SignUp value)? signUp,
     TResult? Function(_SignOut value)? signOut,
     TResult? Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult? Function(_ResetState value)? resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$AuthEvent {
     TResult Function(_SignUp value)? signUp,
     TResult Function(_SignOut value)? signOut,
     TResult Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +166,7 @@ class _$_SignIn implements _SignIn {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
+    required TResult Function() resetState,
   }) {
     return signIn(email, password);
   }
@@ -171,6 +178,7 @@ class _$_SignIn implements _SignIn {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
+    TResult? Function()? resetState,
   }) {
     return signIn?.call(email, password);
   }
@@ -182,6 +190,7 @@ class _$_SignIn implements _SignIn {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -197,6 +206,7 @@ class _$_SignIn implements _SignIn {
     required TResult Function(_SignUp value) signUp,
     required TResult Function(_SignOut value) signOut,
     required TResult Function(_GoogleSIgnIn value) googleSignIn,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return signIn(this);
   }
@@ -208,6 +218,7 @@ class _$_SignIn implements _SignIn {
     TResult? Function(_SignUp value)? signUp,
     TResult? Function(_SignOut value)? signOut,
     TResult? Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return signIn?.call(this);
   }
@@ -219,6 +230,7 @@ class _$_SignIn implements _SignIn {
     TResult Function(_SignUp value)? signUp,
     TResult Function(_SignOut value)? signOut,
     TResult Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -315,6 +327,7 @@ class _$_SignUp implements _SignUp {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
+    required TResult Function() resetState,
   }) {
     return signUp(email, password);
   }
@@ -326,6 +339,7 @@ class _$_SignUp implements _SignUp {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
+    TResult? Function()? resetState,
   }) {
     return signUp?.call(email, password);
   }
@@ -337,6 +351,7 @@ class _$_SignUp implements _SignUp {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -352,6 +367,7 @@ class _$_SignUp implements _SignUp {
     required TResult Function(_SignUp value) signUp,
     required TResult Function(_SignOut value) signOut,
     required TResult Function(_GoogleSIgnIn value) googleSignIn,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return signUp(this);
   }
@@ -363,6 +379,7 @@ class _$_SignUp implements _SignUp {
     TResult? Function(_SignUp value)? signUp,
     TResult? Function(_SignOut value)? signOut,
     TResult? Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return signUp?.call(this);
   }
@@ -374,6 +391,7 @@ class _$_SignUp implements _SignUp {
     TResult Function(_SignUp value)? signUp,
     TResult Function(_SignOut value)? signOut,
     TResult Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -436,6 +454,7 @@ class _$_SignOut implements _SignOut {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
+    required TResult Function() resetState,
   }) {
     return signOut();
   }
@@ -447,6 +466,7 @@ class _$_SignOut implements _SignOut {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
+    TResult? Function()? resetState,
   }) {
     return signOut?.call();
   }
@@ -458,6 +478,7 @@ class _$_SignOut implements _SignOut {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -473,6 +494,7 @@ class _$_SignOut implements _SignOut {
     required TResult Function(_SignUp value) signUp,
     required TResult Function(_SignOut value) signOut,
     required TResult Function(_GoogleSIgnIn value) googleSignIn,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return signOut(this);
   }
@@ -484,6 +506,7 @@ class _$_SignOut implements _SignOut {
     TResult? Function(_SignUp value)? signUp,
     TResult? Function(_SignOut value)? signOut,
     TResult? Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return signOut?.call(this);
   }
@@ -495,6 +518,7 @@ class _$_SignOut implements _SignOut {
     TResult Function(_SignUp value)? signUp,
     TResult Function(_SignOut value)? signOut,
     TResult Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -550,6 +574,7 @@ class _$_GoogleSIgnIn implements _GoogleSIgnIn {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function() googleSignIn,
+    required TResult Function() resetState,
   }) {
     return googleSignIn();
   }
@@ -561,6 +586,7 @@ class _$_GoogleSIgnIn implements _GoogleSIgnIn {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function()? googleSignIn,
+    TResult? Function()? resetState,
   }) {
     return googleSignIn?.call();
   }
@@ -572,6 +598,7 @@ class _$_GoogleSIgnIn implements _GoogleSIgnIn {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function()? googleSignIn,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (googleSignIn != null) {
@@ -587,6 +614,7 @@ class _$_GoogleSIgnIn implements _GoogleSIgnIn {
     required TResult Function(_SignUp value) signUp,
     required TResult Function(_SignOut value) signOut,
     required TResult Function(_GoogleSIgnIn value) googleSignIn,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return googleSignIn(this);
   }
@@ -598,6 +626,7 @@ class _$_GoogleSIgnIn implements _GoogleSIgnIn {
     TResult? Function(_SignUp value)? signUp,
     TResult? Function(_SignOut value)? signOut,
     TResult? Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return googleSignIn?.call(this);
   }
@@ -609,6 +638,7 @@ class _$_GoogleSIgnIn implements _GoogleSIgnIn {
     TResult Function(_SignUp value)? signUp,
     TResult Function(_SignOut value)? signOut,
     TResult Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (googleSignIn != null) {
@@ -623,9 +653,130 @@ abstract class _GoogleSIgnIn implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$$_ResetStateCopyWith<$Res> {
+  factory _$$_ResetStateCopyWith(
+          _$_ResetState value, $Res Function(_$_ResetState) then) =
+      __$$_ResetStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ResetStateCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_ResetState>
+    implements _$$_ResetStateCopyWith<$Res> {
+  __$$_ResetStateCopyWithImpl(
+      _$_ResetState _value, $Res Function(_$_ResetState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ResetState implements _ResetState {
+  const _$_ResetState();
+
+  @override
+  String toString() {
+    return 'AuthEvent.resetState()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ResetState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) signIn,
+    required TResult Function(String email, String password) signUp,
+    required TResult Function() signOut,
+    required TResult Function() googleSignIn,
+    required TResult Function() resetState,
+  }) {
+    return resetState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function(String email, String password)? signUp,
+    TResult? Function()? signOut,
+    TResult? Function()? googleSignIn,
+    TResult? Function()? resetState,
+  }) {
+    return resetState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? signIn,
+    TResult Function(String email, String password)? signUp,
+    TResult Function()? signOut,
+    TResult Function()? googleSignIn,
+    TResult Function()? resetState,
+    required TResult orElse(),
+  }) {
+    if (resetState != null) {
+      return resetState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SignIn value) signIn,
+    required TResult Function(_SignUp value) signUp,
+    required TResult Function(_SignOut value) signOut,
+    required TResult Function(_GoogleSIgnIn value) googleSignIn,
+    required TResult Function(_ResetState value) resetState,
+  }) {
+    return resetState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SignIn value)? signIn,
+    TResult? Function(_SignUp value)? signUp,
+    TResult? Function(_SignOut value)? signOut,
+    TResult? Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult? Function(_ResetState value)? resetState,
+  }) {
+    return resetState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SignIn value)? signIn,
+    TResult Function(_SignUp value)? signUp,
+    TResult Function(_SignOut value)? signOut,
+    TResult Function(_GoogleSIgnIn value)? googleSignIn,
+    TResult Function(_ResetState value)? resetState,
+    required TResult orElse(),
+  }) {
+    if (resetState != null) {
+      return resetState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetState implements AuthEvent {
+  const factory _ResetState() = _$_ResetState;
+}
+
+/// @nodoc
 mixin _$AuthState {
   Option<Either<MainFailure, String>> get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -637,7 +788,9 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({Option<Either<MainFailure, String>> authFailureOrSuccess});
+  $Res call(
+      {Option<Either<MainFailure, String>> authFailureOrSuccess,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -654,12 +807,17 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? authFailureOrSuccess = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       authFailureOrSuccess: null == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Option<Either<MainFailure, String>>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -671,7 +829,9 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Option<Either<MainFailure, String>> authFailureOrSuccess});
+  $Res call(
+      {Option<Either<MainFailure, String>> authFailureOrSuccess,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -686,12 +846,17 @@ class __$$_AuthStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? authFailureOrSuccess = null,
+    Object? isLoading = null,
   }) {
     return _then(_$_AuthState(
       authFailureOrSuccess: null == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Option<Either<MainFailure, String>>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -699,14 +864,17 @@ class __$$_AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthState implements _AuthState {
-  const _$_AuthState({required this.authFailureOrSuccess});
+  const _$_AuthState(
+      {required this.authFailureOrSuccess, required this.isLoading});
 
   @override
   final Option<Either<MainFailure, String>> authFailureOrSuccess;
+  @override
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'AuthState(authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'AuthState(authFailureOrSuccess: $authFailureOrSuccess, isLoading: $isLoading)';
   }
 
   @override
@@ -715,11 +883,13 @@ class _$_AuthState implements _AuthState {
         (other.runtimeType == runtimeType &&
             other is _$_AuthState &&
             (identical(other.authFailureOrSuccess, authFailureOrSuccess) ||
-                other.authFailureOrSuccess == authFailureOrSuccess));
+                other.authFailureOrSuccess == authFailureOrSuccess) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authFailureOrSuccess);
+  int get hashCode => Object.hash(runtimeType, authFailureOrSuccess, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -730,11 +900,13 @@ class _$_AuthState implements _AuthState {
 
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
-      {required final Option<Either<MainFailure, String>>
-          authFailureOrSuccess}) = _$_AuthState;
+      {required final Option<Either<MainFailure, String>> authFailureOrSuccess,
+      required final bool isLoading}) = _$_AuthState;
 
   @override
   Option<Either<MainFailure, String>> get authFailureOrSuccess;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

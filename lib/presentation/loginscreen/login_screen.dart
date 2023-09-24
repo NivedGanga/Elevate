@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         state.authFailureOrSuccess.fold(
           () {},
@@ -40,59 +40,73 @@ class LoginScreen extends StatelessWidget {
           ),
         );
       },
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  height,
-                  height,
-                  Image.asset("assets/signup-vector.png"),
-                  height,
-                  LoginEmailWidget(emailController: _emailController),
-                  height,
-                  PasswordWidget(
-                      showPassword: _showPassword,
-                      passwordController: _passwordController),
-                  height,
-                  RegistrationButtonWidget(
-                    text: 'Login',
-                    function: () {
-                      if (!_formKey.currentState!.validate()) {
-                        return;
-                      }
-                      if (_emailController.text.isEmpty ||
-                          _passwordController.text.isEmpty) {
-                        displaySnackbar(
-                            context: context,
-                            message: "Please fill all the fields");
-                        return;
-                      }
-                      context.read<AuthBloc>().add(AuthEvent.signIn(
-                          email: _emailController.text,
-                          password: _passwordController.text));
-                    },
+      builder: (context, state) {
+        return Scaffold(
+          body: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        height,
+                        height,
+                        Image.asset("assets/signup-vector.png"),
+                        height,
+                        LoginEmailWidget(emailController: _emailController),
+                        height,
+                        PasswordWidget(
+                            showPassword: _showPassword,
+                            passwordController: _passwordController),
+                        height,
+                        RegistrationButtonWidget(
+                          text: 'Login',
+                          function: () {
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            if (_emailController.text.isEmpty ||
+                                _passwordController.text.isEmpty) {
+                              displaySnackbar(
+                                  context: context,
+                                  message: "Please fill all the fields");
+                              return;
+                            }
+                            context.read<AuthBloc>().add(AuthEvent.signIn(
+                                email: _emailController.text,
+                                password: _passwordController.text));
+                          },
+                        ),
+                        height,
+                        DividerWidget(),
+                        height,
+                        GoogleSignInWidget(),
+                        height,
+                        Footer(
+                          text1: "Don't have an account?",
+                          text2: "Sign Up",
+                          page: '/signUp',
+                        )
+                      ],
+                    ),
                   ),
-                  height,
-                  DividerWidget(),
-                  height,
-                  GoogleSignInWidget(),
-                  height,
-                  Footer(
-                    text1: "Don't have an account?",
-                    text2: "Sign Up",
-                    page: '/signUp',
-                  )
-                ],
+                ),
               ),
-            ),
+              state.isLoading
+                  ? Container(
+                      color: Colors.black.withOpacity(0.5),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : SizedBox(),
+            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
