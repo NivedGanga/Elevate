@@ -19,7 +19,9 @@ class RegistrationButtonWidget extends StatelessWidget {
             onPressed: function,
             child: Text(
               text,
-              style: TextStyle(color: Colors.black, fontSize: 18),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontSize: 18),
             ),
             style: ButtonStyle(
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(

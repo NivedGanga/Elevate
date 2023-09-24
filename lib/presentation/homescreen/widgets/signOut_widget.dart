@@ -1,4 +1,5 @@
 import 'package:elevate/application/auth/auth_bloc.dart';
+import 'package:elevate/infrastructure/auth/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,6 +68,7 @@ class SignOutWidget extends StatelessWidget {
                               context.read<AuthBloc>().add(
                                     AuthEvent.signOut(),
                                   );
+                              AuthRepo().googleSignOut();
                               Navigator.pop(context);
                             },
                             child: Text('Yes'),

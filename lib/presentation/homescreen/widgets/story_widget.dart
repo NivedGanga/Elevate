@@ -3,12 +3,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:popup_menu/popup_menu.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class StoryWidget extends StatelessWidget {
   StoryWidget({
     super.key,
   });
+  FlutterTts flutterTts = FlutterTts();
+  speak(String text) async {
+    await flutterTts.setLanguage('en-uk');
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text);
+  }
 
   void showPopupMenu(BuildContext context, Offset position, String text) {
     final RenderBox overlay =
@@ -49,9 +55,7 @@ class StoryWidget extends StatelessWidget {
                     ),
                     elevation: MaterialStateProperty.all(50),
                   ),
-                  onPressed: () {
-                    print("hi");
-                  },
+                  onPressed: () => speak(text),
                   icon: Icon(
                     Icons.multitrack_audio_rounded,
                     color: Theme.of(context).colorScheme.tertiary,

@@ -20,6 +20,7 @@ class AuthRepo implements IAuthRepo {
         email: email,
         password: password,
       );
+
       if (userCredential.user != null) {
         return right(userCredential.user!.uid);
       } else {
@@ -84,13 +85,28 @@ class AuthRepo implements IAuthRepo {
           accessToken: _googleSignInAuthentication.accessToken,
           idToken: _googleSignInAuthentication.idToken,
         );
-        await FirebaseAuth.instance.signInWithCredential(_credential);
-        final User _user = FirebaseAuth.instance.currentUser!;
-        return right(_user.uid);
+
+        if (_googleSIgnInAccount.email != null) {
+          final UserCredential _userCredential =
+              await FirebaseAuth.instance.signInWithCredential(_credential);
+          if (_userCredential.user != null) {
+            return right(_userCredential.user!.uid);
+          }
+        }
       }
       return left(MainFailure.firebaseFailure('Sign-in failed.'));
     } catch (e) {
       return left(MainFailure.firebaseFailure("Something Went wrong"));
+    }
+  }
+
+  @override
+  Future<Either<MainFailure, bool>> googleSignOut() async {
+    try {
+      await GoogleSignIn().signOut();
+      return right(true);
+    } catch (e) {
+      return left(MainFailure.firebaseFailure(e.toString()));
     }
   }
 

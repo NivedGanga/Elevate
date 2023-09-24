@@ -60,7 +60,10 @@ class SignUpEmailFiedWidget extends StatelessWidget {
                       child: !value
                           ? Text(
                               'Send OTP',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                             )
                           : Container(
                               height: 80.h,
