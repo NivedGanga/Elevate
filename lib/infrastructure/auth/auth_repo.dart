@@ -20,6 +20,7 @@ class AuthRepo implements IAuthRepo {
         email: email,
         password: password,
       );
+
       if (userCredential.user != null) {
         return right(userCredential.user!.uid);
       } else {
@@ -85,7 +86,14 @@ class AuthRepo implements IAuthRepo {
           accessToken: _googleSignInAuthentication.accessToken,
           idToken: _googleSignInAuthentication.idToken,
         );
-        await FirebaseAuth.instance.signInWithCredential(_credential);
+
+        if (_googleSIgnInAccount.email != null) {
+          final UserCredential _userCredential =
+              await FirebaseAuth.instance.signInWithCredential(_credential);
+          if (_userCredential.user != null) {
+            return right(_userCredential.user!.uid);
+          }
+        }
       }
       return right(_googleSIgnInAccount!.id);
     } catch (e) {
@@ -201,6 +209,4 @@ class AuthRepo implements IAuthRepo {
     await sharedPref.then((value) => value.remove('uid'));
     return;
   }
-  
-  
 }

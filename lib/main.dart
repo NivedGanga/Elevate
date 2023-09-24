@@ -7,6 +7,7 @@ import 'package:elevate/presentation/detailsScreen/detailsScreen.dart';
 import 'package:elevate/presentation/homescreen/homescreen.dart';
 import 'package:elevate/presentation/loginscreen/login_screen.dart';
 import 'package:elevate/presentation/splash_screen/splash_screen.dart';
+import 'package:elevate/textTospeech/textTospeech.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:elevate/presentation/loginscreen/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           '/details': (context) => PersonalDetails(),
           '/home': (context) => HomeScreen(),
         },
+        
       ),
     );
   }
