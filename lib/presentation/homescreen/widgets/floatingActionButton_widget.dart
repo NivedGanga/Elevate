@@ -140,6 +140,8 @@ class _FloatingActionButtonWidgetState
               child: FloatingActionButton(
                 heroTag: 'speak',
                 onPressed: () {
+                  
+                  
                   (_recordState != RecordState.stop) ? _stop() : _start();
                 },
                 child: _recordState == RecordState.stop

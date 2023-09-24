@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class StoryWidget extends StatelessWidget {
@@ -83,7 +84,10 @@ class StoryWidget extends StatelessWidget {
             if (state1.isLoading) {
               return Expanded(
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitWave(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    size: 100.sp,
+                  ),
                 ),
               );
             } else {
@@ -171,7 +175,10 @@ class StoryWidget extends StatelessWidget {
                 if (state.isLoading) {
                   return Expanded(
                     child: Center(
-                      child: CircularProgressIndicator(),
+                      child: SpinKitWave(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        size: 100.sp,
+                      ),
                     ),
                   );
                 } else {
