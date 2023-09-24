@@ -60,11 +60,10 @@ class AuthRepo implements IAuthRepo {
       } else if (e.code == 'wrong-password') {
         return left(MainFailure.firebaseFailure('Incorrect password.'));
       } else {
-        return left(
-            MainFailure.firebaseFailure('Sign-in failed: ${e.message}'));
+        return left(const MainFailure.firebaseFailure('Sign-in failed'));
       }
     } catch (e) {
-      return left(MainFailure.firebaseFailure(e.toString()));
+      return left(MainFailure.firebaseFailure("e.toString()"));
     }
   }
 
@@ -95,9 +94,9 @@ class AuthRepo implements IAuthRepo {
           }
         }
       }
-      return right(_googleSIgnInAccount!.id);
+      return left(MainFailure.firebaseFailure('Sign-in failed.'));
     } catch (e) {
-      return left(MainFailure.firebaseFailure(e.toString()));
+      return left(MainFailure.firebaseFailure("Something Went wrong"));
     }
   }
 
