@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       context.read<SplashBloc>().add(const SplashEvent.started());
     });
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       body: BlocListener<SplashBloc, SplashState>(
         listener: (context, state) {
           if (state.isUserLoggedIn == true) {
@@ -22,10 +22,22 @@ class SplashScreen extends StatelessWidget {
             Navigator.pushNamed(context, '/login');
           }
         },
-        child: Center(
-          child: Text(
-            "Elevate",
-            style: Theme.of(context).textTheme.titleLarge,
+        child: SizedBox.expand(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                image: AssetImage("assets/logo.png"),
+                height: 250.h,
+                width: 250.w,
+              ),
+              Text("Elevate",
+                  style: TextStyle(
+                    fontSize: 200.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  )),
+            ],
           ),
         ),
       ),
