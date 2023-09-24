@@ -7,7 +7,8 @@ class Footer extends StatelessWidget {
   const Footer({
     super.key,
     required this.text1,
-    required this.text2, required this.page,
+    required this.text2,
+    required this.page,
   });
 
   @override

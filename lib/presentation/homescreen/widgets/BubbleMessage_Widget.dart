@@ -14,8 +14,7 @@ class BubbleMessageWidget extends StatelessWidget {
       color: Theme.of(context).colorScheme.tertiary,
       tail: true,
       textStyle: TextStyle(
-          fontSize: 16,
-          color: Theme.of(context).colorScheme.background),
+          fontSize: 16, color: Theme.of(context).colorScheme.background),
     );
   }
 }

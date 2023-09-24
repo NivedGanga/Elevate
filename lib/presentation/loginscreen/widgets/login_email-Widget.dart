@@ -18,8 +18,7 @@ class LoginEmailWidget extends StatelessWidget {
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.person),
           hintText: 'Email',
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20))),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
     );
   }
 }

@@ -13,7 +13,8 @@ part 'otp_bloc.freezed.dart';
 class OtpBloc extends Bloc<OtpEvent, OtpState> {
   final IAuthRepo _authRepo;
   OtpBloc(this._authRepo)
-      : super(OtpState(otpFailureOrSuccess: none(), otp: null, isVerified: false)) {
+      : super(OtpState(
+            otpFailureOrSuccess: none(), otp: null, isVerified: false)) {
     on<_SendOtp>((event, emit) async {
       final responce = await _authRepo.sendOtp(event.recipienEmail);
       responce.fold((failure) {

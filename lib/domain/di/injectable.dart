@@ -7,5 +7,5 @@ final getIt = GetIt.instance;
 Future<void> configureInjuction() async {
   await getIt.init(environment: Environment.prod);
 }
-//command for build runner 
+//command for build runner
 //flutter pub run build_runner watch --delete-conflicting-outputs
