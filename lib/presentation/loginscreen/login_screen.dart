@@ -102,9 +102,10 @@ class LoginScreen extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                       child: Center(
                         child: SpinKitWave(
-                        color: Theme.of(context).colorScheme.tertiary,
-                        size: 100.sp,
-                      ),
+                          color:
+                              Theme.of(context).colorScheme.primary,
+                          size: 100.sp,
+                        ),
                       ),
                     )
                   : SizedBox(),

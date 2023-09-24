@@ -124,7 +124,7 @@ class SignUpScreen extends StatelessWidget {
                     color: Colors.black.withOpacity(0.5),
                     child: Center(
                       child: SpinKitWave(
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 100.sp,
                       ),
                     ),

@@ -85,7 +85,7 @@ class StoryWidget extends StatelessWidget {
               return Expanded(
                 child: Center(
                   child: SpinKitWave(
-                    color: Theme.of(context).colorScheme.tertiary,
+                    color: Theme.of(context).colorScheme.primary,
                     size: 100.sp,
                   ),
                 ),
@@ -176,7 +176,7 @@ class StoryWidget extends StatelessWidget {
                   return Expanded(
                     child: Center(
                       child: SpinKitWave(
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 100.sp,
                       ),
                     ),
