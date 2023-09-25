@@ -78,7 +78,7 @@ class PersonalDetails extends StatelessWidget {
                         age: int.parse(_ageController.text),
                         email: UserModel.instance.email!,
                         genres: tags,
-                        uid: UserModel.instance.email!));
+                        uid: UserModel.instance.uid!));
                   },
                   name: 'Submit',
                 )

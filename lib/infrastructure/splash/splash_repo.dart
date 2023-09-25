@@ -19,6 +19,7 @@ class SplashRepo extends ISplashRepo {
     if (isUserLoggedIn != null) {
       // Update UserModel with the user's UID.
       UserModel.instance.uid = isUserLoggedIn;
+      print(UserModel.instance.uid);
       // Return 'true' to indicate that the user is logged in.
       return true;
     } else {
@@ -27,4 +28,3 @@ class SplashRepo extends ISplashRepo {
     }
   }
 }
-

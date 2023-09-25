@@ -19,7 +19,7 @@ class UserDetailsRepo extends IUserDetailsRepo {
     try {
       // Print the 'genres' parameter for debugging purposes.
       print(genres);
-
+      print(uid + "andiiiiiiiii");
       // Create a data map containing user details for the request.
       final data = {
         "name": name,
@@ -36,6 +36,7 @@ class UserDetailsRepo extends IUserDetailsRepo {
 
       // Check if the response status code indicates success (200 or 201).
       if (result.statusCode == 201 || result.statusCode == 200) {
+        print(result.data);
         // Return a 'Right' Either indicating success with a null value.
         return Right(null);
       } else {
@@ -51,4 +52,3 @@ class UserDetailsRepo extends IUserDetailsRepo {
     }
   }
 }
-
