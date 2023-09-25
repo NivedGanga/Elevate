@@ -20,6 +20,7 @@ class _MultiSelectFormWidgetState extends State<MultiSelectFormWidget> {
       child: MultiSelectFormField(
         autovalidate: AutovalidateMode.disabled,
         validator: (value) {
+          //validating genre
           if (value == null || value.length == 0) {
             return 'Please select one or more options';
           }
@@ -35,6 +36,7 @@ class _MultiSelectFormWidgetState extends State<MultiSelectFormWidget> {
           "Genre",
           style: TextStyle(fontSize: 16),
         ),
+        //generating list of genres
         dataSource: List.generate(
             Genre.values.length,
             (index) => {
@@ -49,6 +51,7 @@ class _MultiSelectFormWidgetState extends State<MultiSelectFormWidget> {
         initialValue: UserModel.instance.genres,
         onSaved: (value) {
           if (value == null) return;
+          //saving genre
           setState(() {
             UserModel.instance.genres = value;
           });

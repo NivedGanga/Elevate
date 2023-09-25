@@ -12,7 +12,7 @@ class GoogleSignInWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150.h,
       child: Material(
         color: Theme.of(context).colorScheme.tertiaryContainer,
@@ -24,6 +24,7 @@ class GoogleSignInWidget extends StatelessWidget {
           splashColor: Color.fromARGB(255, 255, 193, 212),
           onTap: () async {
             FocusScope.of(context).unfocus();
+            //signing in with google
             context.read<AuthBloc>().add(AuthEvent.googleSignIn());
           },
           child: Padding(

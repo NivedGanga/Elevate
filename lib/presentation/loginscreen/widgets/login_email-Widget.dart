@@ -11,6 +11,7 @@ class LoginEmailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      //validating email
       validator: (value) =>
           (value == null || value.isEmpty) ? 'Enter Email' : null,
       controller: _emailController,

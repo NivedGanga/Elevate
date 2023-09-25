@@ -13,6 +13,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc(this._splashRepo) : super(SplashState.initial()) {
     on<SplashEvent>((event, emit) async {
       final isUserLoggedIn = await _splashRepo.isUserLoggedIn();
+      //emitting the state with the isUserLoggedIn value
       emit(SplashState(
         isUserLoggedIn: isUserLoggedIn,
       ));

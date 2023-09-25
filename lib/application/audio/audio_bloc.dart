@@ -15,6 +15,7 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
   final IAudioRepo _audioRepo;
   AudioBloc(this._audioRepo)
       : super(AudioState(currectedorfailure: None(), isLoading: false)) {
+    //managing the state of the audio posting process
     on<_Started>((event, emit) async {
       emit(state.copyWith(currectedorfailure: none(), isLoading: true));
       final responce = await _audioRepo.postAudio(path: event.path);
@@ -26,7 +27,7 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
             currectedorfailure: some(right(r)), isLoading: false));
       });
     });
-
+//managing the state of the audio clearing process
     on<_ClearAudio>((event, emit) {
       emit(state.copyWith(currectedorfailure: none()));
     });

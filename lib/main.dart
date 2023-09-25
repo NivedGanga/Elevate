@@ -18,11 +18,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main(List<String> args) async {
+  //Flutter to ensure that the Flutter framework is properly initialized before running any code
   WidgetsFlutterBinding.ensureInitialized();
+  //initializing the dependency injection
   await configureInjuction();
+  //initializing the firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  //running the app
   runApp(MyApp());
 }
 
@@ -34,6 +38,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(1080, 2280),
       builder: (context, child) => MultiBlocProvider(providers: [
+        //providing all the blocs
         BlocProvider<SplashBloc>(
           create: (context) => getIt<SplashBloc>(),
         ),
@@ -57,16 +62,19 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Elevate",
         initialRoute: '/',
+        //light theme
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: lightColorScheme,
           fontFamily: 'Outfit',
         ),
+        //dark theme
         darkTheme: ThemeData(
           useMaterial3: true,
           colorScheme: darkColorScheme,
           fontFamily: 'Outfit',
         ),
+        //initializing the routes
         routes: {
           '/': (context) => SplashScreen(),
           '/login': (context) => LoginScreen(),
@@ -78,5 +86,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

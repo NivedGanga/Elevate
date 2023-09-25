@@ -15,7 +15,7 @@ class PasswordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: _showPassword,
-        builder: (context, value, Widget_) {
+        builder: (context, value, _) {
           return TextFormField(
             controller: _passwordController,
             obscureText: value,
@@ -25,6 +25,7 @@ class PasswordWidget extends StatelessWidget {
                     onPressed: () {
                       _showPassword.value = !_showPassword.value;
                     },
+                    //if value is true then display visibility_off icon else display visibility icon
                     icon:
                         Icon(value ? Icons.visibility_off : Icons.visibility)),
                 hintText: 'Password',

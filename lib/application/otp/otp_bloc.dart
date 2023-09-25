@@ -15,6 +15,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
   OtpBloc(this._authRepo)
       : super(OtpState(
             otpFailureOrSuccess: none(), otp: null, isVerified: false)) {
+    //managing the state of the otp sending process
     on<_SendOtp>((event, emit) async {
       final responce = await _authRepo.sendOtp(event.recipienEmail);
       responce.fold((failure) {
@@ -28,7 +29,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         ));
       });
     });
-
+//managing the state of the otp verification process
     on<_VerifyOtp>((event, emit) async {
       await _authRepo
           .verifyOtp(otp: event.otp, enteredOtp: event.enteredOtp)
@@ -44,6 +45,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         });
       });
     });
+    //managing the state of the otp reset process
     on<_ResetState>((event, emit) {
       emit(state.copyWith(
         otpFailureOrSuccess: none(),

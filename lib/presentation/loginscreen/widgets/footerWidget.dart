@@ -19,6 +19,7 @@ class Footer extends StatelessWidget {
         Text(text1),
         TextButton(
           onPressed: () {
+            //navigating to the specified page
             Navigator.of(context).pushReplacementNamed(page);
           },
           child: Text(text2),

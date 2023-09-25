@@ -10,16 +10,19 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(seconds: 1));
+      //waiting 1 second and checking whther user is logged in or not
       context.read<SplashBloc>().add(const SplashEvent.started());
     });
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: BlocListener<SplashBloc, SplashState>(
         listener: (context, state) {
           if (state.isUserLoggedIn == true) {
-            Navigator.pushNamed(context, '/home');
+            //if user is logged in then navigate to home screen
+            Navigator.pushReplacementNamed(context, '/home');
           } else if (state.isUserLoggedIn == false) {
-            Navigator.pushNamed(context, '/login');
+            //if user is not logged in then navigate to login screen
+            Navigator.pushReplacementNamed(context, '/login');
           }
         },
         child: SizedBox.expand(
@@ -34,7 +37,7 @@ class SplashScreen extends StatelessWidget {
               Text("Elevate",
                   style: TextStyle(
                     fontSize: 200.sp,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w300,
                     color: Theme.of(context).colorScheme.onBackground,
                   )),
             ],

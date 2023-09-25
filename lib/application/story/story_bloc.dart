@@ -14,6 +14,7 @@ part 'story_bloc.freezed.dart';
 class StoryBloc extends Bloc<StoryEvent, StoryState> {
   final IStoryRepo _storyRepo;
   StoryBloc(this._storyRepo) : super(StoryState.initial()) {
+    //managing the state of the story fetching process
     on<_FetchStory>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       final responce = await _storyRepo.getStory();

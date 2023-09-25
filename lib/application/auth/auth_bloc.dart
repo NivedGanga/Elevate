@@ -13,6 +13,7 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthRepo _authRepo;
   AuthBloc(this._authRepo) : super(AuthState.initial()) {
+    //managing the state of the authenticaion process
     on<_SignIn>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
@@ -32,10 +33,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+    //managing the state of the registration process
     on<_SignUp>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
       ));
+      
       final responce = await _authRepo.signup(
         email: event.email,
         password: event.password,
@@ -53,6 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+    //managing the state of the logout process
     on<_SignOut>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
@@ -71,6 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+    //managing the state of the google signin process
     on<_GoogleSIgnIn>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
@@ -89,6 +94,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+    //resetting the state of the auth bloc
     on<_ResetState>((event, emit) {
       emit(state.copyWith(
         authFailureOrSuccess: none(),

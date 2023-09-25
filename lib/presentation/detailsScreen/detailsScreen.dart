@@ -25,6 +25,7 @@ class PersonalDetails extends StatelessWidget {
           either.fold((failure) {
             displaySnackbar(context: context, message: failure.toString());
           }, (_) {
+            //if user details entered successfully then navigate to home screen
             Navigator.of(context).pushReplacementNamed('/home');
           });
         });
@@ -59,6 +60,7 @@ class PersonalDetails extends StatelessWidget {
                 height,
                 SubmitButton(
                   function: () {
+                    //checking whether fields are empty or not
                     if (_nameController.text.isEmpty ||
                         _ageController.text.isEmpty) {
                       displaySnackbar(
@@ -70,6 +72,7 @@ class PersonalDetails extends StatelessWidget {
                         .replaceFirst('[', "")
                         .replaceFirst("]", "")
                         .replaceAll("Genre.", '');
+                    //adding user details to backend
                     context.read<UserDetailsBloc>().add(UserDetailsEvent(
                         name: _nameController.text,
                         age: int.parse(_ageController.text),

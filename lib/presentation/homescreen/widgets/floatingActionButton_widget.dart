@@ -1,23 +1,19 @@
 import 'dart:async';
-
-import 'package:dio/dio.dart';
 import 'package:elevate/application/audio/audio_bloc.dart';
 import 'package:elevate/application/story/story_bloc.dart';
-import 'package:elevate/domain/user_details/model/user_model.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:record/record.dart';
 
 class FloatingActionButtonWidget extends StatefulWidget {
-  FloatingActionButtonWidget({
+  const FloatingActionButtonWidget({
     super.key,
   });
 
   @override
-  State<FloatingActionButtonWidget> createState() =>
+  State<FloatingActionButtonWidget> createState()=>
       _FloatingActionButtonWidgetState();
 }
 
@@ -37,6 +33,7 @@ class _FloatingActionButtonWidgetState
 
   @override
   void initState() {
+    //listen to the state of the audio
     _recordSub = _audioRecorder.onStateChanged().listen((recordState) {
       setState(() => _recordState = recordState);
     });
@@ -46,6 +43,7 @@ class _FloatingActionButtonWidgetState
 
   Future<void> _start() async {
     try {
+      //check if the app has permission to record audio
       if (await _audioRecorder.hasPermission()) {
         final isSupported = await _audioRecorder.isEncoderSupported(
           AudioEncoder.aacLc,
@@ -65,7 +63,7 @@ class _FloatingActionButtonWidgetState
       }
     }
   }
-
+//function to start the timer
   void _startTimer() {
     _timer?.cancel();
 
@@ -73,7 +71,7 @@ class _FloatingActionButtonWidgetState
       setState(() => _recordDuration++);
     });
   }
-
+//function to stop the recording
   Future<void> _stop() async {
     _timer?.cancel();
     _recordDuration = 0;
@@ -84,12 +82,12 @@ class _FloatingActionButtonWidgetState
       context.read<AudioBloc>().add(AudioEvent.postAudio(path: path));
     }
   }
-
+//function to pause the recording
   Future<void> _pause() async {
     _timer?.cancel();
     await _audioRecorder.pause();
   }
-
+//function to resume the recording
   Future<void> _resume() async {
     _startTimer();
     await _audioRecorder.resume();
@@ -118,7 +116,9 @@ class _FloatingActionButtonWidgetState
                 child: FloatingActionButton(
                   heroTag: 'next',
                   onPressed: () {
+                    //fetching the next story
                     context.read<StoryBloc>().add(StoryEvent.fetchStory());
+                    //clearing the audio state
                     context.read<AudioBloc>().add(AudioEvent.clearState());
                   },
                   child: Icon(Icons.skip_next),
@@ -127,6 +127,7 @@ class _FloatingActionButtonWidgetState
             ],
           );
         }
+        //if the audio is loading then return empty container
         if (state.isLoading) {
           return SizedBox();
         }
@@ -140,8 +141,7 @@ class _FloatingActionButtonWidgetState
               child: FloatingActionButton(
                 heroTag: 'speak',
                 onPressed: () {
-                  
-                  
+                  //if the audio is playing then stop it else start it
                   (_recordState != RecordState.stop) ? _stop() : _start();
                 },
                 child: _recordState == RecordState.stop
@@ -155,6 +155,11 @@ class _FloatingActionButtonWidgetState
             FloatingActionButton(
               backgroundColor: Theme.of(context).colorScheme.background,
               onPressed: () {
+                if (_recordState == RecordState.stop) {
+                  //fetching the next story
+                  context.read<StoryBloc>().add(StoryEvent.fetchStory());
+                }
+                //if the audio is playing then pause it else resume it
                 (_recordState == RecordState.pause) ? _resume() : _pause();
               },
               child: _recordState == RecordState.stop

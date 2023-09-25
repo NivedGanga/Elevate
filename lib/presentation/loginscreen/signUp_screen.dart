@@ -33,6 +33,7 @@ class SignUpScreen extends StatelessWidget {
           () {},
           (either) => either.fold(
             (failure) {
+              //if failure is firebase failure then display the message
               if (failure is FirebaseFailure) {
                 context.read<OtpBloc>().add(OtpEvent.resetState());
                 displaySnackbar(context: context, message: failure.message);
@@ -43,6 +44,7 @@ class SignUpScreen extends StatelessWidget {
               }
             },
             (sucess) async {
+              //if user is logged in then navigate to details screen to get user details
               context.read<OtpBloc>().add(OtpEvent.resetState());
               Navigator.pushReplacementNamed(context, '/details');
             },
@@ -99,6 +101,7 @@ class SignUpScreen extends StatelessWidget {
                                           "Password must be atleast 6 characters long");
                                   return;
                                 }
+                                //if all the fields are filled then add the event to the bloc to login the user
                                 context.read<AuthBloc>().add(AuthEvent.signUp(
                                     email: _emailController.text,
                                     password: _passwordController.text));
@@ -122,6 +125,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
             ),
+            //if the state is loading then show the loading widget
             state.isLoading
                 ? Container(
                     color: Colors.black.withOpacity(0.5),

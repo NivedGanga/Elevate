@@ -18,6 +18,7 @@ class StoryWidget extends StatelessWidget {
     await flutterTts.speak(text);
   }
 
+//funation to show the popup menu of mispronounced words and speak them
   void showPopupMenu(BuildContext context, Offset position, String text) {
     final RenderBox overlay =
         Overlay.of(context).context.findRenderObject() as RenderBox;
@@ -43,6 +44,7 @@ class StoryWidget extends StatelessWidget {
       position: positionRect,
       items: <PopupMenuEntry>[
         PopupMenuItem(
+          value: 'item3',
           child: ScaleTransition(
             scale: scaleAnimation,
             child: Row(
@@ -57,6 +59,7 @@ class StoryWidget extends StatelessWidget {
                     ),
                     elevation: MaterialStateProperty.all(50),
                   ),
+                  //speaking the mispronounced word
                   onPressed: () => speak(text),
                   icon: Icon(
                     Icons.multitrack_audio_rounded,
@@ -66,7 +69,6 @@ class StoryWidget extends StatelessWidget {
               ],
             ),
           ),
-          value: 'item3',
         ),
       ],
     ).then((value) {});
@@ -81,6 +83,7 @@ class StoryWidget extends StatelessWidget {
       builder: (context, state1) {
         return BlocBuilder<StoryBloc, StoryState>(
           builder: (context, state) {
+            //if the story is loading then show the loading indicator
             if (state1.isLoading) {
               return Expanded(
                 child: Center(
@@ -91,17 +94,18 @@ class StoryWidget extends StatelessWidget {
                 ),
               );
             } else {
+              //if the story is loaded then show the story
               if (state1.currectedorfailure.isSome()) {
                 return state1.currectedorfailure.fold(() {
-                  return SizedBox();
+                  return const SizedBox();
                 }, (a) {
                   return a.fold((l) {
                     return Expanded(
                       child: Center(
                         child: Text(
                           l.map(
-                            serverFailure: (_) => "Server Failure",
-                            clientFailure: (_) => "Client Failurell",
+                            serverFailure: (_) => "Server is down",
+                            clientFailure: (_) => "Something went wrong",
                             firebaseFailure: (value) => value.message,
                             otherFailure: (value) => value.message,
                           ),
@@ -109,6 +113,7 @@ class StoryWidget extends StatelessWidget {
                       ),
                     );
                   }, (r) {
+                    ///splitting the story into words
                     final _words = state.story!.split(RegExp(r'[ .]'));
                     _words.removeWhere((word) => word.isEmpty);
                     final List<TextSpan> spans = [];
@@ -116,7 +121,7 @@ class StoryWidget extends StatelessWidget {
                       TextStyle style;
                       if (r.comparisonResult![i].isCorrect == "A") {
                         style = TextStyle(
-                          fontSize: 68.sp,
+                          fontSize: 69.sp,
                           fontFamily: "Outfit",
                           fontWeight: FontWeight.w400,
                           height: 1.38,
@@ -124,12 +129,12 @@ class StoryWidget extends StatelessWidget {
                         );
                       } else {
                         style = TextStyle(
-                          fontSize: 68.sp,
+                          fontSize: 69.sp,
                           fontWeight: FontWeight.w400,
                           fontFamily: "Outfit",
                           decoration: TextDecoration.underline,
-                          decorationColor: Theme.of(context).colorScheme.error,
-                          decorationStyle: TextDecorationStyle.solid,
+                          decorationColor: Colors.red,
+                          decorationStyle: TextDecorationStyle.wavy,
                           color: Theme.of(context).colorScheme.background,
                         );
                       }
@@ -144,6 +149,7 @@ class StoryWidget extends StatelessWidget {
                               }
                             }));
                     }
+                    //showing the story with highlighted mispronounced words
                     return Expanded(
                       child: Container(
                         decoration: BoxDecoration(
@@ -172,6 +178,7 @@ class StoryWidget extends StatelessWidget {
                   });
                 });
               } else {
+                //if the story is loading then show the loading indicator
                 if (state.isLoading) {
                   return Expanded(
                     child: Center(
@@ -182,7 +189,7 @@ class StoryWidget extends StatelessWidget {
                     ),
                   );
                 } else {
-                  return state.failureOrStory.fold(() => SizedBox(), (a) {
+                  return state.failureOrStory.fold(() => const SizedBox(), (a) {
                     return a.fold((l) {
                       return Expanded(
                         child: Center(
@@ -197,6 +204,7 @@ class StoryWidget extends StatelessWidget {
                         ),
                       );
                     }, (r) {
+                      //showing the story
                       return Expanded(
                         child: Container(
                           decoration: BoxDecoration(

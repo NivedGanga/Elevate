@@ -15,6 +15,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
   final IUserDetailsRepo _userDetailsRepo;
   UserDetailsBloc(this._userDetailsRepo)
       : super(UserDetailsState(postFailureorSuccess: none())) {
+        //managing the state of the post user details process
     on<_UserDetailsEvent>((event, emit) async {
       final responce = await _userDetailsRepo.postUserDetails(
           name: event.name,

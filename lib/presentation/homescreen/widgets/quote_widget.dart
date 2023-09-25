@@ -12,6 +12,7 @@ class QuoteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  
     int random = Random().nextInt(motivationalQuotes.length);
 
     return Padding(

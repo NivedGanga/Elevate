@@ -29,6 +29,7 @@ class LoginScreen extends StatelessWidget {
           () {},
           (either) => either.fold(
             (failure) {
+              //if failure is firebase failure then display the message
               if (failure is FirebaseFailure) {
                 displaySnackbar(context: context, message: failure.message);
               } else {
@@ -37,6 +38,7 @@ class LoginScreen extends StatelessWidget {
               }
             },
             (sucess) {
+              //if user is logged in then navigate to home screen
               Navigator.pushReplacementNamed(context, '/home');
             },
           ),
@@ -77,6 +79,7 @@ class LoginScreen extends StatelessWidget {
                                   message: "Please fill all the fields");
                               return;
                             }
+                            //if all the fields are filled then add the event to the bloc to login the user
                             context.read<AuthBloc>().add(AuthEvent.signIn(
                                 email: _emailController.text,
                                 password: _passwordController.text));
@@ -102,8 +105,7 @@ class LoginScreen extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                       child: Center(
                         child: SpinKitWave(
-                          color:
-                              Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.primary,
                           size: 100.sp,
                         ),
                       ),

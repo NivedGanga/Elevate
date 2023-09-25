@@ -31,12 +31,13 @@ class OtpWidget extends StatelessWidget {
                     _otpController.text.length != 6) {
                   return;
                 }
+                //if otp is null then display snackbar
                 if (otp == null) {
                   displaySnackbar(
                       context: context, message: "please get your otp first");
                   return;
                 }
-                print("$otp + ${_otpController.text}");
+                //verifying otp
                 context.read<OtpBloc>().add(OtpEvent.verifyOtp(
                     otp: otp.toString(), enteredOtp: _otpController.text));
               },
@@ -46,6 +47,7 @@ class OtpWidget extends StatelessWidget {
                     () {},
                     (either) => either.fold(
                       (failure) {
+                        //if failure is firebase failure then display the message
                         displaySnackbar(
                             context: context,
                             message: "Otp Verification Failed");
@@ -55,6 +57,7 @@ class OtpWidget extends StatelessWidget {
                   );
                 },
                 builder: (context, state) {
+                  //if otp is verified then display check icon
                   if (state.isVerified) {
                     return Icon(
                       Icons.check,

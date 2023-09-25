@@ -19,6 +19,7 @@ class SignOutWidget extends StatelessWidget {
             (failure) {},
             (sucess) {
               if (sucess == "logout") {
+                //if user is logged out then navigate to login screen and reset the auth state
                 context.read<AuthBloc>().add(
                       AuthEvent.resetState(),
                     );
@@ -50,6 +51,7 @@ class SignOutWidget extends StatelessWidget {
             ];
           },
           onSelected: (value) {
+            //showing alert dialog to confirm sign out
             showDialog(
               context: context,
               builder: (context) => SizedBox(
@@ -68,6 +70,7 @@ class SignOutWidget extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
+                              //if user wants to sign out then add sign out event
                               context.read<AuthBloc>().add(
                                     AuthEvent.signOut(),
                                   );
@@ -79,6 +82,7 @@ class SignOutWidget extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
+                              //if user doesn't want to sign out then pop the dialog
                               Navigator.pop(context);
                             },
                             child: Text('No'),

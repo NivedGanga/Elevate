@@ -22,6 +22,7 @@ class SignUpEmailFiedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      //validating email
       validator: (value) =>
           (value == null || value.isEmpty) ? 'Enter Email' : null,
       controller: _emailController,
@@ -37,12 +38,14 @@ class SignUpEmailFiedWidget extends StatelessWidget {
                       () {},
                       (either) => either.fold(
                         (failure) {
+                          //if failure is firebase failure then display the message
                           _loading.value = false;
 
                           displaySnackbar(
                               context: context, message: "Otp Sending Failed");
                         },
                         (sucess) {
+                          //if otp is verified then display check icon
                           _loading.value = false;
                         },
                       ),
@@ -50,10 +53,13 @@ class SignUpEmailFiedWidget extends StatelessWidget {
                   },
                   child: TextButton(
                       onPressed: () async {
+                        //if form is not valid then return
                         if (!(_formKey.currentState!.validate())) {
                           return;
                         }
+                 
                         _loading.value = true;
+                        //sending otp
                         context.read<OtpBloc>().add(OtpEvent.sendOtp(
                             recipienEmail: _emailController.text));
                       },
