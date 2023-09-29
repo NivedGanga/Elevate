@@ -13,7 +13,7 @@ class FloatingActionButtonWidget extends StatefulWidget {
   });
 
   @override
-  State<FloatingActionButtonWidget> createState()=>
+  State<FloatingActionButtonWidget> createState() =>
       _FloatingActionButtonWidgetState();
 }
 
@@ -63,6 +63,7 @@ class _FloatingActionButtonWidgetState
       }
     }
   }
+
 //function to start the timer
   void _startTimer() {
     _timer?.cancel();
@@ -71,6 +72,7 @@ class _FloatingActionButtonWidgetState
       setState(() => _recordDuration++);
     });
   }
+
 //function to stop the recording
   Future<void> _stop() async {
     _timer?.cancel();
@@ -82,11 +84,13 @@ class _FloatingActionButtonWidgetState
       context.read<AudioBloc>().add(AudioEvent.postAudio(path: path));
     }
   }
+
 //function to pause the recording
   Future<void> _pause() async {
     _timer?.cancel();
     await _audioRecorder.pause();
   }
+
 //function to resume the recording
   Future<void> _resume() async {
     _startTimer();
@@ -158,6 +162,7 @@ class _FloatingActionButtonWidgetState
                 if (_recordState == RecordState.stop) {
                   //fetching the next story
                   context.read<StoryBloc>().add(StoryEvent.fetchStory());
+                  return;
                 }
                 //if the audio is playing then pause it else resume it
                 (_recordState == RecordState.pause) ? _resume() : _pause();

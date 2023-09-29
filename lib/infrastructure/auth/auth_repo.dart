@@ -196,8 +196,45 @@ class AuthRepo implements IAuthRepo {
   String html(String rndnumber) => '''<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Add HTML email styles -->
-    <!-- ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP for ELEVATE</title>
+    <style>
+        /* Add attractive styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #8c74cc;
+            border-radius: 10px;
+          
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        p {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .otp-code {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #FFD8E4;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -206,8 +243,7 @@ class AuthRepo implements IAuthRepo {
         <p class="otp-code">${rndnumber}</p>
     </div>
 </body>
-</html>
-''';
+</html>''';
 
   @override
   Future<void> removeSharedpref() async {
@@ -217,4 +253,3 @@ class AuthRepo implements IAuthRepo {
     return;
   }
 }
-
